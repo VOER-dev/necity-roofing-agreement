@@ -240,6 +240,88 @@
   }
   a { color: var(--navy); overflow-wrap: anywhere; }
 
+
+  /* ---------- Contractor lock / customer mode ---------- */
+  .toolbar button.lock { background: #f2c14e; color: #1d2b3a; font-weight: 700; }
+  .bottom-actions .lock { background:#f2c14e; color:#1d2b3a; }
+  .lock-banner {
+    max-width: 800px; margin: 18px auto 0; padding: 14px 18px;
+    background: #fff7e0; border: 2px solid #e0a800; border-radius: 6px;
+    font-size: 15px; color: #3a2d00; box-shadow: var(--shadow);
+  }
+  .lock-banner strong { display: block; font-size: 16px; margin-bottom: 4px; }
+  .lock-banner .docid { font-family: "Courier New", monospace; font-weight: 700; letter-spacing: .05em; }
+  .lock-banner.error { background: #fdecea; border-color: #c62828; color: #5b1010; }
+  .lock-banner + .sheet { margin-top: 12px; }
+  body.customer-mode input:disabled,
+  body.customer-mode textarea:disabled {
+    color: var(--ink); -webkit-text-fill-color: var(--ink); opacity: 1;
+    background: #fff; border-color: #c9d6e2; cursor: default;
+  }
+  body.customer-mode textarea:disabled { resize: none; overflow: hidden; }
+  body.customer-mode .checks label, body.customer-mode .radios label { cursor: default; }
+  body.customer-mode .checks label:hover, body.customer-mode .radios label:hover { background: transparent; }
+  body.customer-mode input[type=checkbox]:disabled, body.customer-mode input[type=radio]:disabled { opacity: 1; }
+  body.customer-mode .locked-pad canvas { display: none !important; }
+  body.customer-mode .locked-pad .sig-print { display: block !important; }
+  body.customer-mode .locked-pad .pad-actions { display: none !important; }
+  body.customer-mode .customer-editable input, body.customer-mode .customer-editable canvas { background: #fffbea; border-color: #e0a800; }
+  .doc-id-line { display: none; }
+  @media (max-width: 560px) {
+    .toolbar { position: static; padding: 8px 10px; }
+    .toolbar .actions button { padding: 8px 10px; font-size: 13px; }
+  }
+
+  .modal-back {
+    position: fixed; inset: 0; z-index: 50; background: rgba(10, 25, 45, .55);
+    display: flex; align-items: center; justify-content: center; padding: 16px;
+  }
+  .modal-back[hidden] { display: none; }
+  .modal {
+    background: #fff; border-radius: 10px; max-width: 560px; width: 100%;
+    padding: 20px 20px 16px; box-shadow: 0 10px 40px rgba(0,0,0,.35);
+    max-height: calc(100vh - 32px); overflow: auto;
+  }
+  .modal h3 { margin: 0 0 8px; font-family: var(--serif); font-style: italic; color: var(--navy); font-size: 20px; }
+  .modal p { margin: 0 0 10px; font-size: 15px; }
+  .modal .docid { font-family: "Courier New", monospace; font-weight: 700; font-size: 18px; letter-spacing: .06em; color: var(--navy); }
+  .modal textarea { width: 100%; height: 96px; font-size: 13px; font-family: "Courier New", monospace; word-break: break-all; }
+  .modal .row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .modal .row button, .modal .row a {
+    font-family: var(--sans); font-size: 15px; font-weight: 700; border: 0; border-radius: 6px;
+    padding: 12px 16px; min-height: var(--tap); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
+  }
+  .modal .row .primary { background: var(--navy); color: #fff; }
+  .modal .row .secondary { background: #e3edf6; color: var(--navy); }
+  .modal .small { font-size: 13px; color: #555; }
+  .busy { position: fixed; inset: 0; z-index: 60; background: rgba(255,255,255,.75); display:flex; align-items:center; justify-content:center; font-size: 18px; font-weight: 700; color: var(--navy); }
+  .busy[hidden] { display: none; }
+
+  /* Offscreen render used for the flattened PDF */
+  .pdf-render { position: absolute; left: -20000px; top: 0; width: 682px; background: #fff; color: #000; font-family: var(--sans); font-size: 14px; line-height: 1.35; }
+  .pdf-render .sheet { max-width: none; margin: 0; padding: 0; box-shadow: none; }
+  .pdf-render .title-bar { font-size: 24px; }
+  .pdf-render .subtitle { font-size: 14px; margin-top: 10px; padding-bottom: 10px; }
+  .pdf-render .contact { margin: 16px 0 8px; font-size: 14px; }
+  .pdf-render h2.section { font-size: 15px; margin: 14px 0 8px; }
+  .pdf-render .field { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 8px; margin: 0 0 7px; }
+  .pdf-render .field > label, .pdf-render .field .lab { margin: 0; font-size: 14px; flex: 0 1 auto; }
+  .pdf-render .pv { flex: 1 1 160px; min-height: 19px; border-bottom: 1px solid #222; font-size: 14px; white-space: pre-wrap; overflow-wrap: anywhere; padding: 0 0 1px; }
+  .pdf-render .pv.block { flex-basis: 100%; }
+  .pdf-render .checks, .pdf-render .radios { margin: 2px 0 10px; gap: 4px 14px; }
+  .pdf-render .checks label, .pdf-render .radios label { padding: 0; min-height: 0; font-size: 14px; }
+  .pdf-render .box { display: inline-block; width: 14px; height: 14px; border: 1.5px solid #222; text-align: center; line-height: 12px; font-size: 12px; font-weight: 700; font-style: normal; }
+  .pdf-render .box.round { border-radius: 50%; }
+  .pdf-render .note, .pdf-render ul.terms li, .pdf-render .caption { font-size: 14px; }
+  .pdf-render .note { margin: 6px 0 10px; }
+  .pdf-render ul.terms li { margin: 0 0 4px; }
+  .pdf-render .sig-row { grid-template-columns: 1fr 150px; }
+  .pdf-render .pad-wrap .sig-print { display: block; height: 80px; border: 0; border-bottom: 1px solid #222; background: transparent; }
+  .pdf-render .pad-wrap .sig-print.empty { visibility: hidden; }
+  .pdf-render .footer { margin-top: 18px; font-size: 13px; }
+  .pdf-render .doc-id-line { display: block; text-align: center; font-size: 12px; font-family: "Courier New", monospace; margin-top: 6px; }
+  .pdf-render a { color: #000; text-decoration: none; }
+
   /* ---------- Print: letter size, ink values, no chrome ---------- */
   @page { size: letter; margin: 0.5in 0.7in 0.5in 0.7in; }
   @media print {
@@ -310,6 +392,10 @@
     }
     a { color: #000; text-decoration: none; }
     .footer { margin-top: 16pt; font-size: 10pt; }
+    .lock-banner, .modal-back, .busy, .bottom-actions { display: none !important; }
+    .doc-id-line { display: block !important; text-align: center; font-family: "Courier New", monospace; font-size: 9.5pt; margin-top: 4pt; }
+    body.customer-mode .locked-pad canvas { display: none !important; }
+    input:disabled, textarea:disabled { -webkit-text-fill-color: #000 !important; color: #000 !important; }
   }
 </style>
 </head>
@@ -318,10 +404,14 @@
     <div class="brand">NE City Roofing agreement</div>
     <div class="actions">
       <span class="status" id="saveStatus" aria-live="polite"></span>
+      <button type="button" class="lock lock-only" id="btnLock">Lock & create customer link</button>
+      <button type="button" class="primary" id="btnPdf">Download signed PDF</button>
       <button type="button" class="primary" id="btnPrint">Save as PDF / Print</button>
       <button type="button" class="secondary" id="btnClearConfirm">Clear form</button>
     </div>
   </div>
+
+  <div class="lock-banner no-print" id="lockBanner" role="status" hidden></div>
 
   <form class="sheet" id="agreement" autocomplete="on">
     <div class="title-bar">NE CITY ROOFING</div>
@@ -507,6 +597,8 @@
     </div>
 
     <div class="bottom-actions no-print">
+      <button type="button" class="lock lock-only" id="btnLockBottom">Lock & create customer link</button>
+      <button type="button" class="primary" id="btnPdfBottom">Download signed PDF</button>
       <button type="button" class="primary" id="btnPrintBottom">Save as PDF / Print</button>
       <button type="button" class="secondary" id="btnClearBottom">Clear form</button>
     </div>
@@ -517,184 +609,214 @@
     <p class="note">CSLB sample: <a href="https://www.cslb.ca.gov/Resources/GuidesAndPublications/2025/SAMPLE%20HOME%20IMPROVEMENT%20CONTRACT.pdf">https://www.cslb.ca.gov/Resources/GuidesAndPublications/2025/SAMPLE%20HOME%20IMPROVEMENT%20CONTRACT.pdf</a></p>
 
     <p class="footer">NE City Roofing&nbsp;&nbsp;•&nbsp;&nbsp;Contract template — legal review required</p>
+    <p class="doc-id-line" id="docIdLine"></p>
   </form>
+
+  <div class="modal-back no-print" id="linkModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="linkTitle">
+      <h3 id="linkTitle">Customer link is ready</h3>
+      <p>Everything you filled in is now locked into this link. The customer can only add their printed name, signature and date.</p>
+      <p>Document ID: <span class="docid" id="linkDocId"></span><br><span class="small">Write this down. The customer&#8217;s page and signed PDF show the same ID. If the IDs don&#8217;t match, the agreement was changed.</span></p>
+      <label for="linkText" class="small">Customer link (<span id="linkLen"></span>):</label>
+      <textarea id="linkText" readonly></textarea>
+      <p class="small" id="linkWarn" hidden>This link is long. Some text-message apps may cut it off, so send it by email or use Share.</p>
+      <div class="row">
+        <button type="button" class="primary" id="linkCopy">Copy link</button>
+        <button type="button" class="primary" id="linkShare" hidden>Share</button>
+        <a class="secondary" id="linkOpen" href="#" target="_blank" rel="noopener">Preview customer view</a>
+        <button type="button" class="secondary" id="linkClose">Close</button>
+      </div>
+      <p class="small" id="linkCopied" aria-live="polite"></p>
+      <p class="small">If you change anything after this, create a new link. The data lives only in the link and is never uploaded to a server.</p>
+    </div>
+  </div>
+  <div class="busy no-print" id="busy" hidden>Making your PDF…</div>
 
 <script>
 (function () {
-  const STORAGE_KEY = "necity-roofing-agreement-v1";
-  const form = document.getElementById("agreement");
-  const statusEl = document.getElementById("saveStatus");
-  let saveTimer = null;
+  "use strict";
+  var DRAFT_KEY = "necity-roofing-agreement-v1";
+  var CUSTOMER_FIELDS = ["customer_printed_name", "customer_signature_date"];
+  var CUSTOMER_SIG = "customer_signature";
+  var CONTRACTOR_SIG = "contractor_signature";
+  var LIB_H2C = { src: "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js", integrity: "sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H" };
+  var LIB_JSPDF = { src: "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js", integrity: "sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" };
+  var SIG_UNITS = 200; /* stroke coordinates are stored in 1/200ths of the pad height */
 
+  var form = document.getElementById("agreement");
+  var statusEl = document.getElementById("saveStatus");
+  var bannerEl = document.getElementById("lockBanner");
+  var docIdLine = document.getElementById("docIdLine");
+  var busyEl = document.getElementById("busy");
+  var mode = "contractor";      /* or "customer" */
+  var lockedDoc = null;         /* { json, data, docId, fullHash } in customer mode */
+  var storageKey = DRAFT_KEY;
+  var saveTimer = null;
+
+  /* ---------------- helpers ---------------- */
+  function $(id) { return document.getElementById(id); }
   function showSaved() {
-    const now = new Date();
-    const t = now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    var t = new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
     statusEl.textContent = "Saved " + t;
   }
-
-  function collect() {
-    const data = { fields: {}, checks: {}, radios: {}, sigs: {} };
-    form.querySelectorAll("input[type=text], input[type=date], input[type=tel], input[type=email], textarea").forEach(function (el) {
-      data.fields[el.name] = el.value;
+  function textEls() { return form.querySelectorAll("input[type=text], input[type=date], input[type=tel], input[type=email], textarea"); }
+  function isCustomerField(name) { return CUSTOMER_FIELDS.indexOf(name) !== -1; }
+  function b64urlFromBytes(bytes) {
+    var s = "", chunk = 0x8000;
+    for (var i = 0; i < bytes.length; i += chunk) s += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
+    return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  }
+  function bytesFromB64url(str) {
+    str = str.replace(/-/g, "+").replace(/_/g, "/");
+    while (str.length % 4) str += "=";
+    var bin = atob(str), out = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i);
+    return out;
+  }
+  function streamBytes(bytes, stream) {
+    var s = new Blob([bytes]).stream().pipeThrough(stream);
+    return new Response(s).arrayBuffer().then(function (b) { return new Uint8Array(b); });
+  }
+  function encodePayload(json) {
+    var raw = new TextEncoder().encode(json);
+    if (typeof CompressionStream === "function") {
+      try {
+        return streamBytes(raw, new CompressionStream("deflate-raw")).then(function (z) { return "z" + b64urlFromBytes(z); });
+      } catch (e) { /* fall through */ }
+    }
+    return Promise.resolve("j" + b64urlFromBytes(raw));
+  }
+  function decodePayload(token) {
+    var kind = token.charAt(0), bytes = bytesFromB64url(token.slice(1));
+    if (kind === "z") {
+      if (typeof DecompressionStream !== "function") return Promise.reject(new Error("This browser is too old to open the agreement. Please update it or try Chrome or Safari."));
+      return streamBytes(bytes, new DecompressionStream("deflate-raw")).then(function (b) { return new TextDecoder().decode(b); });
+    }
+    if (kind === "j") return Promise.resolve(new TextDecoder().decode(bytes));
+    return Promise.reject(new Error("Unrecognized agreement link."));
+  }
+  function sha256Hex(str) {
+    if (!(window.crypto && crypto.subtle)) return Promise.resolve("");
+    return crypto.subtle.digest("SHA-256", new TextEncoder().encode(str)).then(function (buf) {
+      return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ("0" + b.toString(16)).slice(-2); }).join("");
     });
-    form.querySelectorAll("input[type=checkbox]").forEach(function (el) {
-      data.checks[el.name] = !!el.checked;
-    });
-    form.querySelectorAll("input[type=radio]").forEach(function (el) {
-      if (el.checked) data.radios[el.name] = el.value;
-    });
-    document.querySelectorAll("canvas.sig-pad").forEach(function (c) {
-      if (c.dataset.hasInk === "1") data.sigs[c.id] = c.toDataURL("image/png");
-    });
-    return data;
+  }
+  function shortId(hex) { return hex ? hex.slice(0, 12).toUpperCase() : "unavailable"; }
+  function fmtDate(v) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || "");
+    return m ? m[2] + "/" + m[3] + "/" + m[1] : (v || "");
+  }
+  function fmtStamp(d) {
+    try { return d.toLocaleString([], { year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" }); }
+    catch (e) { return d.toString(); }
+  }
+  function todayISO() {
+    var d = new Date();
+    return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2);
   }
 
-  function save() {
-    try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(collect()));
-      showSaved();
-    } catch (e) {
-      statusEl.textContent = "Could not autosave on this device";
-    }
-  }
-
-  function scheduleSave() {
-    clearTimeout(saveTimer);
-    saveTimer = setTimeout(save, 250);
-  }
-
-  function restore() {
-    var raw;
-    try { raw = localStorage.getItem(STORAGE_KEY); } catch (e) { return; }
-    if (!raw) return;
-    var data;
-    try { data = JSON.parse(raw); } catch (e) { return; }
-    if (data.fields) {
-      Object.keys(data.fields).forEach(function (k) {
-        var el = form.elements[k];
-        if (el && el.type !== "checkbox" && el.type !== "radio") el.value = data.fields[k] || "";
-      });
-    }
-    if (data.checks) {
-      Object.keys(data.checks).forEach(function (k) {
-        var el = form.elements[k];
-        if (el) el.checked = !!data.checks[k];
-      });
-    }
-    if (data.radios) {
-      Object.keys(data.radios).forEach(function (k) {
-        var val = data.radios[k];
-        var el = form.querySelector('input[type=radio][name="' + k + '"][value="' + val + '"]');
-        if (el) el.checked = true;
-      });
-    }
-    if (data.sigs) {
-      Object.keys(data.sigs).forEach(function (id) {
-        var canvas = document.getElementById(id);
-        if (canvas && data.sigs[id]) loadSig(canvas, data.sigs[id]);
-      });
-    }
-    showSaved();
-  }
-
-  function clearForm() {
-    if (!window.confirm("Clear all filled-in answers and signatures from this form? This cannot be undone.")) return;
-    form.reset();
-    document.querySelectorAll("canvas.sig-pad").forEach(clearPad);
-    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
-    statusEl.textContent = "Form cleared";
-  }
-
-  /* -------- Signature pads (mouse + touch + pen) -------- */
-  function padSize(canvas) {
-    var wrap = canvas.parentElement;
-    var cssW = wrap.clientWidth || 300;
-    var cssH = 110;
-    var ratio = window.devicePixelRatio || 1;
-    var prev = canvas.dataset.hasInk === "1" ? canvas.toDataURL("image/png") : null;
-    canvas.style.width = cssW + "px";
-    canvas.style.height = cssH + "px";
-    canvas.width = Math.max(1, Math.round(cssW * ratio));
-    canvas.height = Math.max(1, Math.round(cssH * ratio));
+  /* ---------------- signature pads (mouse + touch + pen) ---------------- */
+  function padCss(canvas) { return { w: canvas.parentElement.clientWidth || 300, h: 110 }; }
+  function setupCtx(canvas) {
+    var css = padCss(canvas), ratio = window.devicePixelRatio || 1;
+    canvas.style.width = css.w + "px";
+    canvas.style.height = css.h + "px";
+    canvas.width = Math.max(1, Math.round(css.w * ratio));
+    canvas.height = Math.max(1, Math.round(css.h * ratio));
     var ctx = canvas.getContext("2d");
     ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
-    ctx.lineWidth = 2.25;
-    ctx.strokeStyle = "#0a2340";
-    ctx.clearRect(0, 0, cssW, cssH);
+    ctx.lineCap = "round"; ctx.lineJoin = "round"; ctx.lineWidth = 2.25; ctx.strokeStyle = "#0a2340"; ctx.fillStyle = "#0a2340";
+    ctx.clearRect(0, 0, css.w, css.h);
+    return { ctx: ctx, w: css.w, h: css.h };
+  }
+  function drawStrokes(canvas, strokes) {
+    var s = setupCtx(canvas), ctx = s.ctx;
+    var maxX = 1;
+    strokes.forEach(function (st) { for (var i = 0; i < st.length; i += 2) if (st[i] > maxX) maxX = st[i]; });
+    var k = s.h / SIG_UNITS;
+    if (maxX * k > s.w - 2) k = (s.w - 2) / maxX; /* shrink to fit narrow screens, keep aspect */
+    strokes.forEach(function (st) {
+      if (st.length < 2) return;
+      ctx.beginPath();
+      ctx.moveTo(st[0] * k, st[1] * k);
+      if (st.length === 2) { ctx.arc(st[0] * k, st[1] * k, 1.2, 0, Math.PI * 2); ctx.fill(); return; }
+      for (var i = 2; i < st.length; i += 2) ctx.lineTo(st[i] * k, st[i + 1] * k);
+      ctx.stroke();
+    });
+  }
+  function padSize(canvas) {
+    var prev = (canvas.dataset.hasInk === "1" && !(canvas._strokes && canvas._strokes.length)) ? canvas.toDataURL("image/png") : null;
+    if (canvas._strokes && canvas._strokes.length) { drawStrokes(canvas, canvas._strokes); syncPrintImage(canvas); return; }
+    var s = setupCtx(canvas);
     if (prev) {
       var img = new Image();
-      img.onload = function () {
-        ctx.drawImage(img, 0, 0, cssW, cssH);
-        syncPrintImage(canvas);
-      };
+      img.onload = function () { s.ctx.drawImage(img, 0, 0, s.w, s.h); syncPrintImage(canvas); };
       img.src = prev;
-    } else {
-      syncPrintImage(canvas);
-    }
+    } else syncPrintImage(canvas);
   }
-
   function loadSig(canvas, dataUrl) {
     var img = new Image();
     img.onload = function () {
-      var cssW = canvas.clientWidth || 300;
-      var cssH = canvas.clientHeight || 110;
-      var ctx = canvas.getContext("2d");
-      ctx.drawImage(img, 0, 0, cssW, cssH);
+      var s = setupCtx(canvas);
+      var r = Math.min(s.w / img.width, s.h / img.height);
+      /* old drafts were stretched to the full pad; keep that behaviour for them */
+      if (canvas._fitStretch) s.ctx.drawImage(img, 0, 0, s.w, s.h);
+      else s.ctx.drawImage(img, 0, 0, img.width * r, img.height * r);
       canvas.dataset.hasInk = "1";
       syncPrintImage(canvas);
     };
     img.src = dataUrl;
   }
-
-  function clearPad(canvas) {
+  function clearPad(canvas, silent) {
     canvas.dataset.hasInk = "0";
+    canvas._strokes = [];
+    canvas._signedAt = null;
     padSize(canvas);
-    scheduleSave();
+    if (!silent) scheduleSave();
   }
-
   function syncPrintImage(canvas) {
-    var img = document.getElementById(canvas.id + "_img");
+    var img = $(canvas.id + "_img");
     if (!img) return;
     if (canvas.dataset.hasInk === "1") img.src = canvas.toDataURL("image/png");
     else img.removeAttribute("src");
   }
-
   function attachPad(canvas) {
-    var drawing = false;
-    var last = null;
-
+    var drawing = false, last = null, cur = null;
+    canvas._strokes = canvas._strokes || [];
     function pt(ev) {
-      var r = canvas.getBoundingClientRect();
-      var src = ev;
+      var r = canvas.getBoundingClientRect(), src = ev;
       if (ev.touches && ev.touches[0]) src = ev.touches[0];
       else if (ev.changedTouches && ev.changedTouches[0]) src = ev.changedTouches[0];
       return { x: src.clientX - r.left, y: src.clientY - r.top };
     }
+    function units(p) { var k = SIG_UNITS / 110; return [Math.max(0, Math.round(p.x * k)), Math.max(0, Math.round(p.y * k))]; }
     function start(ev) {
+      if (canvas.dataset.locked === "1") return;
       ev.preventDefault();
-      drawing = true;
-      last = pt(ev);
+      /* a pad restored from an old image (no strokes) gets converted on first new stroke */
+      drawing = true; last = pt(ev);
+      cur = units(last);
+      canvas._strokes.push(cur);
+      var ctx = canvas.getContext("2d");
+      ctx.beginPath(); ctx.arc(last.x, last.y, 1.1, 0, Math.PI * 2); ctx.fill();
+      canvas.dataset.hasInk = "1";
     }
     function move(ev) {
       if (!drawing) return;
       ev.preventDefault();
-      var p = pt(ev);
-      var ctx = canvas.getContext("2d");
-      ctx.beginPath();
-      ctx.moveTo(last.x, last.y);
-      ctx.lineTo(p.x, p.y);
-      ctx.stroke();
+      var p = pt(ev), ctx = canvas.getContext("2d");
+      ctx.beginPath(); ctx.moveTo(last.x, last.y); ctx.lineTo(p.x, p.y); ctx.stroke();
+      var u = units(p), n = cur.length;
+      if (Math.abs(u[0] - cur[n - 2]) + Math.abs(u[1] - cur[n - 1]) >= 2) cur.push(u[0], u[1]);
       last = p;
-      canvas.dataset.hasInk = "1";
     }
     function end(ev) {
       if (!drawing) return;
       ev.preventDefault();
-      drawing = false;
-      last = null;
+      drawing = false; last = null; cur = null;
+      canvas._signedAt = new Date().toISOString();
       syncPrintImage(canvas);
+      if (mode === "customer" && canvas.id === CUSTOMER_SIG && !$("customer_signature_date").value) $("customer_signature_date").value = todayISO();
       scheduleSave();
     }
     canvas.addEventListener("mousedown", start);
@@ -704,49 +826,395 @@
     canvas.addEventListener("touchmove", move, { passive: false });
     canvas.addEventListener("touchend", end, { passive: false });
     canvas.addEventListener("touchcancel", end, { passive: false });
-    canvas.addEventListener("pointerdown", function (ev) {
-      if (ev.pointerType === "mouse" || ev.pointerType === "pen") {
-        /* mousedown already covers mouse; pen uses pointer */
-        if (ev.pointerType === "pen") start(ev);
-      }
-    });
+    canvas.addEventListener("pointerdown", function (ev) { if (ev.pointerType === "pen") start(ev); });
     padSize(canvas);
   }
-
-  document.querySelectorAll("canvas.sig-pad").forEach(attachPad);
-  document.querySelectorAll("button[data-clear]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      clearPad(document.getElementById(btn.getAttribute("data-clear")));
+  /* strokes -> compact delta array */
+  function packStrokes(strokes) {
+    return strokes.map(function (st) {
+      var out = [st[0], st[1]];
+      for (var i = 2; i < st.length; i += 2) out.push(st[i] - st[i - 2], st[i + 1] - st[i - 1]);
+      return out;
     });
-  });
-  window.addEventListener("resize", function () {
-    document.querySelectorAll("canvas.sig-pad").forEach(padSize);
-  });
+  }
+  function unpackStrokes(packed) {
+    return (packed || []).map(function (st) {
+      var out = [st[0], st[1]];
+      for (var i = 2; i < st.length; i += 2) out.push(out[i - 2] + st[i], out[i - 1] + st[i + 1]);
+      return out;
+    });
+  }
+  /* small PNG fallback when a signature only exists as an image (old drafts) */
+  function smallSigPng(canvas) {
+    var w = 300, h = Math.round(300 * canvas.clientHeight / Math.max(1, canvas.clientWidth));
+    var c = document.createElement("canvas"); c.width = w; c.height = Math.max(20, h);
+    c.getContext("2d").drawImage(canvas, 0, 0, c.width, c.height);
+    return c.toDataURL("image/png");
+  }
 
-  form.addEventListener("input", scheduleSave);
-  form.addEventListener("change", scheduleSave);
+  /* ---------------- collect / restore ---------------- */
+  function collectAll() {
+    var data = { fields: {}, checks: {}, radios: {}, sigs: {}, strokes: {}, signedAt: {} };
+    textEls().forEach(function (el) { data.fields[el.name] = el.value; });
+    form.querySelectorAll("input[type=checkbox]").forEach(function (el) { data.checks[el.name] = !!el.checked; });
+    form.querySelectorAll("input[type=radio]").forEach(function (el) { if (el.checked) data.radios[el.name] = el.value; });
+    document.querySelectorAll("canvas.sig-pad").forEach(function (c) {
+      if (c.dataset.hasInk === "1") {
+        if (c._strokes && c._strokes.length) data.strokes[c.id] = packStrokes(c._strokes);
+        else data.sigs[c.id] = c.toDataURL("image/png");
+        if (c._signedAt) data.signedAt[c.id] = c._signedAt;
+      }
+    });
+    return data;
+  }
+  /* Everything the contractor locks: all values except the customer's name, signature and date. */
+  function lockPayload() {
+    var p = { v: 1, f: {}, c: {}, r: {} };
+    textEls().forEach(function (el) { if (!isCustomerField(el.name) && el.value) p.f[el.name] = el.value; });
+    form.querySelectorAll("input[type=checkbox]").forEach(function (el) { if (el.checked) p.c[el.name] = 1; });
+    form.querySelectorAll("input[type=radio]").forEach(function (el) { if (el.checked) p.r[el.name] = el.value; });
+    var cs = $(CONTRACTOR_SIG);
+    if (cs.dataset.hasInk === "1") {
+      if (cs._strokes && cs._strokes.length) p.s = packStrokes(cs._strokes);
+      else p.sp = smallSigPng(cs);
+    }
+    return p;
+  }
+  function applyLocked(p) {
+    Object.keys(p.f || {}).forEach(function (k) { var el = form.elements[k]; if (el && !isCustomerField(k) && el.type !== "checkbox" && el.type !== "radio") el.value = p.f[k]; });
+    Object.keys(p.c || {}).forEach(function (k) { var el = form.elements[k]; if (el && el.type === "checkbox") el.checked = true; });
+    Object.keys(p.r || {}).forEach(function (k) {
+      var el = form.querySelector('input[type=radio][name="' + k + '"][value="' + String(p.r[k]).replace(/"/g, "") + '"]');
+      if (el) el.checked = true;
+    });
+    var cs = $(CONTRACTOR_SIG);
+    if (p.s && p.s.length) { cs._strokes = unpackStrokes(p.s); cs.dataset.hasInk = "1"; drawStrokes(cs, cs._strokes); syncPrintImage(cs); }
+    else if (p.sp) loadSig(cs, p.sp);
+  }
+  function save() {
+    try {
+      var all = collectAll(), toStore = all;
+      if (mode === "customer") {
+        toStore = { fields: {}, sigs: {}, strokes: {}, signedAt: {} };
+        CUSTOMER_FIELDS.forEach(function (k) { toStore.fields[k] = all.fields[k] || ""; });
+        if (all.strokes[CUSTOMER_SIG]) toStore.strokes[CUSTOMER_SIG] = all.strokes[CUSTOMER_SIG];
+        if (all.sigs[CUSTOMER_SIG]) toStore.sigs[CUSTOMER_SIG] = all.sigs[CUSTOMER_SIG];
+        if (all.signedAt[CUSTOMER_SIG]) toStore.signedAt[CUSTOMER_SIG] = all.signedAt[CUSTOMER_SIG];
+      }
+      localStorage.setItem(storageKey, JSON.stringify(toStore));
+      showSaved();
+    } catch (e) { statusEl.textContent = "Could not autosave on this device"; }
+    if (mode === "contractor") refreshDraftDocId();
+  }
+  function scheduleSave() { clearTimeout(saveTimer); saveTimer = setTimeout(save, 250); }
+  function restore() {
+    var raw, data;
+    try { raw = localStorage.getItem(storageKey); } catch (e) { return; }
+    if (!raw) return;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    var allowed = function (k) { return mode === "contractor" || isCustomerField(k) || k === CUSTOMER_SIG; };
+    Object.keys(data.fields || {}).forEach(function (k) {
+      var el = form.elements[k];
+      if (el && allowed(k) && el.type !== "checkbox" && el.type !== "radio") el.value = data.fields[k] || "";
+    });
+    if (mode === "contractor") {
+      Object.keys(data.checks || {}).forEach(function (k) { var el = form.elements[k]; if (el) el.checked = !!data.checks[k]; });
+      Object.keys(data.radios || {}).forEach(function (k) {
+        var el = form.querySelector('input[type=radio][name="' + k + '"][value="' + data.radios[k] + '"]');
+        if (el) el.checked = true;
+      });
+    }
+    Object.keys(data.strokes || {}).forEach(function (id) {
+      var c = $(id); if (!c || !allowed(id)) return;
+      c._strokes = unpackStrokes(data.strokes[id]); c.dataset.hasInk = "1"; drawStrokes(c, c._strokes); syncPrintImage(c);
+    });
+    Object.keys(data.sigs || {}).forEach(function (id) {
+      var c = $(id); if (!c || !allowed(id) || (data.strokes && data.strokes[id])) return;
+      c._fitStretch = true; loadSig(c, data.sigs[id]);
+    });
+    Object.keys(data.signedAt || {}).forEach(function (id) { var c = $(id); if (c && allowed(id)) c._signedAt = data.signedAt[id]; });
+    showSaved();
+  }
 
+  /* ---------------- Document ID ---------------- */
+  var draftIdTimer = null;
+  function refreshDraftDocId() {
+    clearTimeout(draftIdTimer);
+    draftIdTimer = setTimeout(function () {
+      sha256Hex(JSON.stringify(lockPayload())).then(function (h) {
+        docIdLine.textContent = "Document ID: " + shortId(h) + "  •  NE City Roofing";
+        docIdLine.dataset.docid = shortId(h);
+      });
+    }, 150);
+  }
+  function currentDocId() {
+    if (mode === "customer") return Promise.resolve(lockedDoc.docId);
+    return sha256Hex(JSON.stringify(lockPayload())).then(shortId);
+  }
+
+  /* ---------------- clear ---------------- */
+  function clearForm() {
+    if (mode === "customer") {
+      if (!window.confirm("Clear your name, signature and date? The rest of the agreement stays locked.")) return;
+      CUSTOMER_FIELDS.forEach(function (k) { form.elements[k].value = ""; });
+      clearPad($(CUSTOMER_SIG), true);
+      try { localStorage.removeItem(storageKey); } catch (e) {}
+      statusEl.textContent = "Your entries were cleared";
+      return;
+    }
+    if (!window.confirm("Clear all filled-in answers and signatures from this form? This cannot be undone.")) return;
+    form.reset();
+    document.querySelectorAll("canvas.sig-pad").forEach(function (c) { clearPad(c, true); });
+    try { localStorage.removeItem(storageKey); } catch (e) {}
+    statusEl.textContent = "Form cleared";
+    refreshDraftDocId();
+  }
+
+  /* ---------------- print ---------------- */
+  function autosizeTextareas() {
+    document.querySelectorAll("textarea").forEach(function (el) { el.style.height = "auto"; el.style.height = Math.max(24, el.scrollHeight + 2) + "px"; });
+  }
   function preparePrint() {
-    document.querySelectorAll("textarea").forEach(function (el) {
-      el.style.height = "auto";
-      el.style.height = Math.max(24, el.scrollHeight) + "px";
-    });
+    autosizeTextareas();
     document.querySelectorAll("canvas.sig-pad").forEach(syncPrintImage);
     save();
   }
-  document.getElementById("btnPrint").addEventListener("click", function () {
-    preparePrint();
-    window.print();
-  });
-  document.getElementById("btnClearConfirm").addEventListener("click", clearForm);
-  document.getElementById("btnClearBottom").addEventListener("click", clearForm);
-  document.getElementById("btnPrintBottom").addEventListener("click", function () { preparePrint(); window.print(); });
-  window.addEventListener("beforeprint", preparePrint);
-  window.addEventListener("afterprint", function () {
-    document.querySelectorAll("textarea").forEach(function (el) { el.style.height = ""; });
-  });
+  function doPrint() { preparePrint(); window.print(); }
 
-  restore();
+  /* ---------------- lock & link (contractor) ---------------- */
+  function openModal() { $("linkModal").hidden = false; }
+  function closeModal() { $("linkModal").hidden = true; }
+  function createLink() {
+    var payload = lockPayload();
+    if (!Object.keys(payload.f).length && !Object.keys(payload.c).length) {
+      window.alert("Fill in the agreement first, then lock it and create the customer link.");
+      return;
+    }
+    var json = JSON.stringify(payload);
+    Promise.all([encodePayload(json), sha256Hex(json)]).then(function (res) {
+      var base = location.origin + location.pathname;
+      var link = base + "#d=" + res[0];
+      $("linkText").value = link;
+      $("linkDocId").textContent = shortId(res[1]);
+      $("linkOpen").href = link;
+      $("linkLen").textContent = link.length.toLocaleString() + " characters";
+      $("linkWarn").hidden = link.length <= 8000;
+      $("linkShare").hidden = !navigator.share;
+      $("linkCopied").textContent = "";
+      openModal();
+      try { $("linkText").focus(); $("linkText").select(); } catch (e) {}
+    }).catch(function (e) { window.alert("Could not create the link: " + e.message); });
+  }
+  function copyLink() {
+    var t = $("linkText"), v = t.value, done = function () { $("linkCopied").textContent = "Link copied."; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(v).then(done, function () { t.select(); document.execCommand("copy"); done(); });
+    else { t.select(); document.execCommand("copy"); done(); }
+  }
+  function shareLink() {
+    navigator.share({ title: "NE City Roofing agreement", text: "Please review and sign your NE City Roofing agreement (Document ID " + $("linkDocId").textContent + ").", url: $("linkText").value }).catch(function () {});
+  }
+
+  /* ---------------- customer mode ---------------- */
+  function enterCustomerMode(json, data, fullHash) {
+    mode = "customer";
+    lockedDoc = { json: json, data: data, fullHash: fullHash, docId: shortId(fullHash) };
+    storageKey = "necity-roofing-agreement-signed-" + (fullHash ? fullHash.slice(0, 24) : b64urlFromBytes(new TextEncoder().encode(json)).slice(0, 24));
+    document.body.classList.add("customer-mode");
+    document.querySelectorAll(".lock-only").forEach(function (el) { el.hidden = true; el.style.display = "none"; });
+    form.reset();
+    applyLocked(data);
+    /* lock every contractor control */
+    form.querySelectorAll("input, textarea").forEach(function (el) {
+      if (isCustomerField(el.name)) { el.closest(".field").classList.add("customer-editable"); return; }
+      el.disabled = true;
+    });
+    var cs = $(CONTRACTOR_SIG);
+    cs.dataset.locked = "1"; cs.tabIndex = -1;
+    cs.closest(".pad-wrap").classList.add("locked-pad");
+    $("clear_contractor_signature").disabled = true;
+    $(CUSTOMER_SIG).closest(".pad-wrap").classList.add("customer-editable");
+    setTimeout(autosizeTextareas, 0);
+    bannerEl.className = "lock-banner no-print";
+    bannerEl.innerHTML = "<strong>Prepared and locked by NE City Roofing. Only your name, signature and date can be filled in.</strong>" +
+      "Document ID: <span class=\"docid\" id=\"bannerDocId\"></span> &nbsp;—&nbsp; NE City Roofing can confirm this ID matches the agreement they sent you. " +
+      "When you finish, tap <b>Download signed PDF</b> and send the file to NE City Roofing.";
+    $("bannerDocId").textContent = lockedDoc.docId;
+    bannerEl.hidden = false;
+    docIdLine.textContent = "Document ID: " + lockedDoc.docId + "  •  Prepared and locked by NE City Roofing";
+    docIdLine.dataset.docid = lockedDoc.docId;
+    document.title = "Sign: NE City Roofing agreement (" + lockedDoc.docId + ")";
+    restore();
+  }
+  function showLinkError(msg) {
+    mode = "customer";
+    document.body.classList.add("customer-mode");
+    form.querySelectorAll("input, textarea, button").forEach(function (el) { el.disabled = true; });
+    document.querySelectorAll("canvas.sig-pad").forEach(function (c) { c.dataset.locked = "1"; });
+    document.querySelectorAll(".toolbar button, .bottom-actions button").forEach(function (b) { b.disabled = true; });
+    bannerEl.className = "lock-banner error no-print";
+    bannerEl.innerHTML = "<strong>This agreement link is damaged or incomplete.</strong>Please ask NE City Roofing (323-696-5640) to send the link again. Do not sign this copy.";
+    bannerEl.hidden = false;
+  }
+
+  /* ---------------- flattened, image-only PDF ---------------- */
+  var libsPromise = null;
+  function loadScript(lib) {
+    return new Promise(function (resolve, reject) {
+      var s = document.createElement("script");
+      s.src = lib.src; s.integrity = lib.integrity; s.crossOrigin = "anonymous"; s.referrerPolicy = "no-referrer";
+      s.onload = resolve; s.onerror = function () { reject(new Error("Could not load " + lib.src)); };
+      document.head.appendChild(s);
+    });
+  }
+  function loadLibs() {
+    if (!libsPromise) libsPromise = Promise.all([window.html2canvas ? 1 : loadScript(LIB_H2C), (window.jspdf ? 1 : loadScript(LIB_JSPDF))]);
+    return libsPromise.catch(function (e) { libsPromise = null; throw e; });
+  }
+  function buildRenderClone() {
+    var wrap = document.createElement("div");
+    wrap.className = "pdf-render";
+    var clone = form.cloneNode(true);
+    clone.removeAttribute("id");
+    clone.querySelectorAll("[id]").forEach(function (el) { el.setAttribute("data-src-id", el.id); el.removeAttribute("id"); });
+    clone.querySelectorAll(".no-print, .pad-actions, canvas, .visually-hidden").forEach(function (el) { el.remove(); });
+    /* text values */
+    clone.querySelectorAll("input[type=text], input[type=date], input[type=tel], input[type=email], textarea").forEach(function (el) {
+      var src = form.elements[el.name];
+      var div = document.createElement("div");
+      div.className = "pv" + (el.tagName === "TEXTAREA" ? " block" : "");
+      div.textContent = src ? (src.type === "date" ? fmtDate(src.value) : src.value) : "";
+      el.replaceWith(div);
+    });
+    clone.querySelectorAll("input[type=checkbox], input[type=radio]").forEach(function (el) {
+      var src = el.type === "radio" ? form.querySelector('input[type=radio][name="' + el.name + '"][value="' + el.value + '"]') : form.elements[el.name];
+      var b = document.createElement("span");
+      b.className = "box" + (el.type === "radio" ? " round" : "");
+      b.textContent = src && src.checked ? "X" : "";
+      el.replaceWith(b);
+    });
+    clone.querySelectorAll("img.sig-print").forEach(function (img) {
+      var c = $(img.getAttribute("data-src-id").replace(/_img$/, ""));
+      if (c && c.dataset.hasInk === "1") img.src = c.toDataURL("image/png");
+      else { img.removeAttribute("src"); img.classList.add("empty"); }
+    });
+    var dl = clone.querySelector(".doc-id-line"); if (dl) dl.style.display = "block";
+    wrap.appendChild(clone);
+    document.body.appendChild(wrap);
+    return wrap;
+  }
+  function pageBreaks(wrap, pageH) {
+    var top0 = wrap.getBoundingClientRect().top;
+    var total = wrap.scrollHeight;
+    var sel = ".title-bar, .subtitle, .contact, .caption, h2.section, .sheet > .field, .checks, .sheet > p.note, ul.terms li, .sig-block, .footer, .doc-id-line";
+    var cands = [];
+    wrap.querySelectorAll(sel).forEach(function (el) {
+      var prev = el.previousElementSibling;
+      if (prev && prev.matches("h2.section")) return;             /* keep heading with first item */
+      if (el.matches("ul.terms li") && !el.previousElementSibling) return;
+      cands.push(Math.floor(el.getBoundingClientRect().top - top0) - 2);
+    });
+    cands.sort(function (a, b) { return a - b; });
+    var breaks = [0], start = 0;
+    while (total - start > pageH) {
+      var best = -1;
+      for (var i = 0; i < cands.length; i++) if (cands[i] > start + 40 && cands[i] <= start + pageH) best = cands[i];
+      if (best < 0) best = start + pageH;
+      breaks.push(best); start = best;
+    }
+    breaks.push(total);
+    return breaks;
+  }
+  function downloadSignedPdf() {
+    if (mode === "customer") {
+      var missing = [];
+      if (!$("customer_printed_name").value.trim()) missing.push("your printed name");
+      if ($(CUSTOMER_SIG).dataset.hasInk !== "1") missing.push("your signature");
+      if (!$("customer_signature_date").value) missing.push("the date");
+      if (missing.length && !window.confirm("Still missing: " + missing.join(", ") + ". Download the PDF anyway?")) return;
+    }
+    busyEl.hidden = false;
+    var wrap = null;
+    var DPI = 200, PAGE_W = 8.5 * DPI, PAGE_H = 11 * DPI, ML = 0.7 * DPI, MT = 0.55 * DPI, MB = 0.75 * DPI;
+    Promise.all([loadLibs(), currentDocId()]).then(function (res) {
+      var docId = res[1];
+      save();
+      wrap = buildRenderClone();
+      var contentPx = PAGE_W - 2 * ML;                 /* target pixel width of content */
+      var scale = contentPx / wrap.offsetWidth;         /* css px -> page px */
+      var pageCss = Math.floor((PAGE_H - MT - MB) / scale);
+      var breaks = pageBreaks(wrap, pageCss);
+      return window.html2canvas(wrap, { scale: scale, backgroundColor: "#ffffff", logging: false, useCORS: true, windowWidth: 1024 }).then(function (big) {
+        var jsPDF = window.jspdf.jsPDF;
+        var pdf = new jsPDF({ unit: "in", format: "letter", orientation: "portrait", compress: true });
+        var cs = $(CUSTOMER_SIG), signedAt = cs._signedAt ? new Date(cs._signedAt) : null;
+        var now = new Date(), pages = breaks.length - 1;
+        for (var p = 0; p < pages; p++) {
+          var y0 = Math.round(breaks[p] * scale), y1 = Math.min(big.height, Math.round(breaks[p + 1] * scale));
+          var pc = document.createElement("canvas"); pc.width = PAGE_W; pc.height = PAGE_H;
+          var ctx = pc.getContext("2d");
+          ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, PAGE_W, PAGE_H);
+          if (y1 > y0) ctx.drawImage(big, 0, y0, big.width, y1 - y0, ML, MT, big.width, y1 - y0);
+          ctx.fillStyle = "#222"; ctx.textAlign = "center";
+          ctx.font = "italic 22px Arial, Helvetica, sans-serif";
+          var line1 = "NE City Roofing agreement  •  Document ID: " + docId + "  •  Page " + (p + 1) + " of " + pages;
+          var line2 = (signedAt ? "Customer signed: " + fmtStamp(signedAt) + "  •  " : (mode === "customer" ? "Not yet signed  •  " : "")) + "PDF created: " + fmtStamp(now);
+          ctx.fillText(line1, PAGE_W / 2, PAGE_H - MB + 62);
+          ctx.fillText(line2, PAGE_W / 2, PAGE_H - MB + 92);
+          ctx.strokeStyle = "#8bb3d6"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(ML, PAGE_H - MB + 30); ctx.lineTo(PAGE_W - ML, PAGE_H - MB + 30); ctx.stroke();
+          if (p > 0) pdf.addPage("letter", "portrait");
+          pdf.addImage(pc.toDataURL("image/jpeg", 0.88), "JPEG", 0, 0, 8.5, 11, undefined, "FAST");
+        }
+        pdf.setProperties({ title: "NE City Roofing agreement " + docId, subject: "Document ID " + docId, creator: "NE City Roofing" });
+        pdf.save("NE-City-Roofing-Agreement-" + docId + (mode === "customer" ? "-signed" : "") + ".pdf");
+      });
+    }).catch(function (e) {
+      window.alert("Sorry, the PDF could not be made (" + (e && e.message ? e.message : e) + "). Use Save as PDF / Print instead.");
+    }).then(function () {
+      if (wrap) wrap.remove();
+      busyEl.hidden = true;
+    });
+  }
+
+  /* ---------------- wire up ---------------- */
+  document.querySelectorAll("canvas.sig-pad").forEach(attachPad);
+  document.querySelectorAll("button[data-clear]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var c = $(btn.getAttribute("data-clear"));
+      if (c.dataset.locked === "1") return;
+      clearPad(c);
+    });
+  });
+  window.addEventListener("resize", function () { document.querySelectorAll("canvas.sig-pad").forEach(padSize); });
+  form.addEventListener("input", scheduleSave);
+  form.addEventListener("change", scheduleSave);
+  ["btnPrint", "btnPrintBottom"].forEach(function (id) { $(id).addEventListener("click", doPrint); });
+  ["btnClearConfirm", "btnClearBottom"].forEach(function (id) { $(id).addEventListener("click", clearForm); });
+  ["btnLock", "btnLockBottom"].forEach(function (id) { $(id).addEventListener("click", createLink); });
+  ["btnPdf", "btnPdfBottom"].forEach(function (id) { $(id).addEventListener("click", downloadSignedPdf); });
+  $("linkCopy").addEventListener("click", copyLink);
+  $("linkShare").addEventListener("click", shareLink);
+  $("linkClose").addEventListener("click", closeModal);
+  $("linkModal").addEventListener("click", function (e) { if (e.target === $("linkModal")) closeModal(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("linkModal").hidden) closeModal(); });
+  window.addEventListener("beforeprint", preparePrint);
+  window.addEventListener("afterprint", function () { if (mode !== "customer") document.querySelectorAll("textarea").forEach(function (el) { el.style.height = ""; }); });
+  window.addEventListener("hashchange", function () { location.reload(); });
+
+  var m = /(?:^#|&)d=([A-Za-z0-9_-]+)/.exec(location.hash || "");
+  if (m) {
+    mode = "customer";
+    document.body.classList.add("customer-mode");
+    document.querySelectorAll(".lock-only").forEach(function (el) { el.hidden = true; el.style.display = "none"; });
+    decodePayload(m[1]).then(function (json) {
+      var data = JSON.parse(json);
+      if (!data || data.v !== 1) throw new Error("bad version");
+      return sha256Hex(json).then(function (h) { enterCustomerMode(json, data, h); });
+    }).catch(function (e) { showLinkError(e && e.message); });
+  } else {
+    restore();
+    refreshDraftDocId();
+  }
+  window.__necity = { mode: function () { return mode; }, docId: function () { return lockedDoc ? lockedDoc.docId : docIdLine.dataset.docid; } };
 })();
 </script>
 </body>
