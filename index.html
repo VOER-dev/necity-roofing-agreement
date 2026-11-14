@@ -404,7 +404,6 @@
     <div class="brand">NE City Roofing agreement</div>
     <div class="actions">
       <span class="status" id="saveStatus" aria-live="polite"></span>
-      <button type="button" class="lock lock-only" id="btnLock">Lock & create customer link</button>
       <button type="button" class="primary" id="btnPdf">Download signed PDF</button>
       <button type="button" class="primary" id="btnPrint">Save as PDF / Print</button>
       <button type="button" class="secondary" id="btnClearConfirm">Clear form</button>
@@ -591,7 +590,6 @@
     </div>
 
     <div class="bottom-actions no-print">
-      <button type="button" class="lock lock-only" id="btnLockBottom">Lock & create customer link</button>
       <button type="button" class="primary" id="btnPdfBottom">Download signed PDF</button>
       <button type="button" class="primary" id="btnPrintBottom">Save as PDF / Print</button>
       <button type="button" class="secondary" id="btnClearBottom">Clear form</button>
@@ -606,24 +604,6 @@
     <p class="doc-id-line" id="docIdLine"></p>
   </form>
 
-  <div class="modal-back no-print" id="linkModal" hidden>
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="linkTitle">
-      <h3 id="linkTitle">Customer link is ready</h3>
-      <p>Everything you filled in is now locked into this link. The customer can only add their printed name, signature and date.</p>
-      <p>Document ID: <span class="docid" id="linkDocId"></span><br><span class="small">Write this down. The customer&#8217;s page and signed PDF show the same ID. If the IDs don&#8217;t match, the agreement was changed.</span></p>
-      <label for="linkText" class="small">Customer link (<span id="linkLen"></span>):</label>
-      <textarea id="linkText" readonly></textarea>
-      <p class="small" id="linkWarn" hidden>This link is long. Some text-message apps may cut it off, so send it by email or use Share.</p>
-      <div class="row">
-        <button type="button" class="primary" id="linkCopy">Copy link</button>
-        <button type="button" class="primary" id="linkShare" hidden>Share</button>
-        <a class="secondary" id="linkOpen" href="#" target="_blank" rel="noopener">Preview customer view</a>
-        <button type="button" class="secondary" id="linkClose">Close</button>
-      </div>
-      <p class="small" id="linkCopied" aria-live="polite"></p>
-      <p class="small">If you change anything after this, create a new link. The data lives only in the link and is never uploaded to a server.</p>
-    </div>
-  </div>
   <div class="busy no-print" id="busy" hidden>Making your PDF…</div>
 
 <script>
@@ -975,39 +955,6 @@
   }
   function doPrint() { preparePrint(); window.print(); }
 
-  /* ---------------- lock & link (contractor) ---------------- */
-  function openModal() { $("linkModal").hidden = false; }
-  function closeModal() { $("linkModal").hidden = true; }
-  function createLink() {
-    var payload = lockPayload();
-    if (!Object.keys(payload.f).length && !Object.keys(payload.c).length) {
-      window.alert("Fill in the agreement first, then lock it and create the customer link.");
-      return;
-    }
-    var json = JSON.stringify(payload);
-    Promise.all([encodePayload(json), sha256Hex(json)]).then(function (res) {
-      var base = location.origin + location.pathname;
-      var link = base + "#d=" + res[0];
-      $("linkText").value = link;
-      $("linkDocId").textContent = shortId(res[1]);
-      $("linkOpen").href = link;
-      $("linkLen").textContent = link.length.toLocaleString() + " characters";
-      $("linkWarn").hidden = link.length <= 8000;
-      $("linkShare").hidden = !navigator.share;
-      $("linkCopied").textContent = "";
-      openModal();
-      try { $("linkText").focus(); $("linkText").select(); } catch (e) {}
-    }).catch(function (e) { window.alert("Could not create the link: " + e.message); });
-  }
-  function copyLink() {
-    var t = $("linkText"), v = t.value, done = function () { $("linkCopied").textContent = "Link copied."; };
-    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(v).then(done, function () { t.select(); document.execCommand("copy"); done(); });
-    else { t.select(); document.execCommand("copy"); done(); }
-  }
-  function shareLink() {
-    navigator.share({ title: "NE City Roofing agreement", text: "Please review and sign your NE City Roofing agreement (Document ID " + $("linkDocId").textContent + ").", url: $("linkText").value }).catch(function () {});
-  }
-
   /* ---------------- customer mode ---------------- */
   function enterCustomerMode(json, data, fullHash) {
     mode = "customer";
@@ -1183,13 +1130,7 @@
   form.addEventListener("change", scheduleSave);
   ["btnPrint", "btnPrintBottom"].forEach(function (id) { $(id).addEventListener("click", doPrint); });
   ["btnClearConfirm", "btnClearBottom"].forEach(function (id) { $(id).addEventListener("click", clearForm); });
-  ["btnLock", "btnLockBottom"].forEach(function (id) { $(id).addEventListener("click", createLink); });
   ["btnPdf", "btnPdfBottom"].forEach(function (id) { $(id).addEventListener("click", downloadSignedPdf); });
-  $("linkCopy").addEventListener("click", copyLink);
-  $("linkShare").addEventListener("click", shareLink);
-  $("linkClose").addEventListener("click", closeModal);
-  $("linkModal").addEventListener("click", function (e) { if (e.target === $("linkModal")) closeModal(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("linkModal").hidden) closeModal(); });
   window.addEventListener("beforeprint", preparePrint);
   window.addEventListener("afterprint", function () { if (mode !== "customer") document.querySelectorAll("textarea").forEach(function (el) { el.style.height = ""; }); });
   window.addEventListener("hashchange", function () { location.reload(); });
