@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NE City Roofing — Roofing Installation / Replacement Agreement</title>
+<style>
+  :root {
+    --blue: #629DD1;
+    --navy: #224E76;
+    --caption: #3476B1;
+    --head-bg: #DFEBF5;
+    --ink: #111;
+    --muted: #3a3a3a;
+    --fill: #f2f7fb;
+    --line: #8bb3d6;
+    --page: #fff;
+    --shadow: 0 1px 3px rgba(17, 40, 70, .12);
+    --tap: 44px;
+    --serif: "Times New Roman", Times, Georgia, serif;
+    --sans: Arial, Helvetica, "Liberation Sans", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #e8eef3; color: var(--ink); }
+  body {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.45;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  .toolbar {
+    position: sticky; top: 0; z-index: 20;
+    background: var(--navy);
+    color: #fff;
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.18);
+  }
+  .toolbar .brand { font-family: var(--serif); font-style: italic; font-weight: 700; font-size: 15px; letter-spacing: .02em; }
+  .toolbar .actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .toolbar button, .toolbar .status {
+    font-family: var(--sans);
+    font-size: 14px;
+    border: 0;
+    border-radius: 6px;
+    padding: 10px 14px;
+    min-height: var(--tap);
+    cursor: pointer;
+  }
+  .toolbar button.primary { background: #fff; color: var(--navy); font-weight: 700; }
+  .toolbar button.secondary { background: #3a6a96; color: #fff; }
+  .toolbar button.danger { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.45); }
+  .toolbar button:active { transform: translateY(1px); }
+  .toolbar .status { padding: 6px 4px; color: #cfe3f4; font-size: 12px; }
+
+  .bottom-actions { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin:28px 0 8px; padding:18px; background:var(--navy); border-radius:8px; }
+  .bottom-actions button { font-family:var(--sans); font-size:16px; font-weight:700; border:0; border-radius:6px; padding:14px 22px; min-height:var(--tap); cursor:pointer; }
+  .bottom-actions .primary { background:#fff; color:var(--navy); }
+  .bottom-actions .secondary { background:#3a6a96; color:#fff; }
+  .sheet {
+    max-width: 800px;
+    margin: 18px auto 48px;
+    background: var(--page);
+    padding: 28px 36px 40px;
+    box-shadow: var(--shadow);
+  }
+
+  .title-bar {
+    background: var(--blue);
+    color: #fff;
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 28px;
+    letter-spacing: .06em;
+    padding: 10px 16px 12px;
+    margin: 0 0 0;
+    border-top: 6px solid var(--blue);
+    border-bottom: 6px solid var(--blue);
+  }
+  .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 15.5px;
+    color: var(--navy);
+    text-align: center;
+    margin: 14px 0 0;
+    padding: 0 8px 16px;
+    border-bottom: 1px dotted var(--blue);
+    line-height: 1.35;
+  }
+  .contact {
+    font-style: italic;
+    margin: 28px 0 10px;
+    font-size: 15px;
+  }
+  .contact p { margin: 0 0 2px; }
+  .caption {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--caption);
+    font-size: 13.5px;
+    margin: 10px 0 6px;
+  }
+
+  h2.section {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 15.5px;
+    color: var(--navy);
+    background: var(--head-bg);
+    border: 1px solid var(--blue);
+    padding: 5px 10px;
+    margin: 22px 0 12px;
+  }
+
+  .field {
+    margin: 0 0 12px;
+  }
+  .field > label, .field .lab {
+    display: block;
+    font-style: italic;
+    font-size: 15px;
+    margin: 0 0 4px;
+  }
+  input[type="text"],
+  input[type="date"],
+  input[type="tel"],
+  input[type="email"],
+  textarea {
+    width: 100%;
+    font-family: var(--sans);
+    font-style: normal;
+    font-size: 16px;
+    color: var(--ink);
+    background: var(--fill);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 10px 10px;
+    min-height: var(--tap);
+    line-height: 1.35;
+  }
+  textarea { min-height: 72px; resize: vertical; }
+  input:focus, textarea:focus, canvas:focus {
+    outline: 2px solid var(--navy);
+    outline-offset: 1px;
+    background: #fff;
+  }
+
+  .checks, .radios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 4px;
+    margin: 4px 0 14px;
+  }
+  .checks label, .radios label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-style: italic;
+    font-size: 15px;
+    padding: 8px 12px 8px 8px;
+    min-height: var(--tap);
+    cursor: pointer;
+    user-select: none;
+    border-radius: 4px;
+  }
+  .checks label:hover, .radios label:hover { background: var(--head-bg); }
+  .checks input, .radios input {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--navy);
+    flex: 0 0 22px;
+  }
+
+  .note {
+    font-style: italic;
+    font-size: 15px;
+    margin: 8px 0 14px;
+  }
+  ul.terms {
+    margin: 4px 0 14px;
+    padding: 0 0 0 22px;
+  }
+  ul.terms li {
+    font-style: italic;
+    font-size: 15px;
+    margin: 0 0 8px;
+  }
+
+  .sig-block { margin: 0 0 16px; }
+  .sig-row {
+    display: grid;
+    grid-template-columns: 1fr 150px;
+    gap: 10px;
+    align-items: end;
+  }
+  @media (max-width: 560px) {
+    .sig-row { grid-template-columns: 1fr; }
+    .sheet { margin: 0; padding: 18px 16px 32px; }
+    .title-bar { font-size: 22px; }
+  }
+  .pad-wrap { position: relative; }
+  .pad-wrap canvas, .pad-wrap .sig-print {
+    width: 100%;
+    height: 110px;
+    border: 1px solid var(--line);
+    background: var(--fill);
+    border-radius: 3px;
+    touch-action: none;
+    display: block;
+  }
+  .pad-wrap .sig-print { display: none; object-fit: contain; background: #fff; }
+  .pad-actions { margin-top: 6px; }
+  .pad-actions button {
+    font-family: var(--sans);
+    font-size: 14px;
+    padding: 8px 12px;
+    min-height: 40px;
+    border: 1px solid var(--navy);
+    background: #fff;
+    color: var(--navy);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .footer {
+    margin-top: 36px;
+    text-align: center;
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+  a { color: var(--navy); overflow-wrap: anywhere; }
+
+  /* ---------- Print: letter size, ink values, no chrome ---------- */
+  @page { size: letter; margin: 0.5in 0.7in 0.5in 0.7in; }
+  @media print {
+    html, body { background: #fff !important; }
+    .toolbar, .pad-actions, .no-print { display: none !important; }
+    .sheet {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+    }
+    .title-bar, h2.section { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    h2.section { break-after: avoid; font-size: 11.5pt; margin: 11pt 0 6pt; }
+    .title-bar { font-size: 18pt; }
+    .subtitle { font-size: 11pt; margin-top: 8pt; padding-bottom: 8pt; }
+    .contact { margin: 12pt 0 6pt; }
+    .caption { margin: 4pt 0 6pt; }
+    body { font-size: 10.5pt; }
+    .contact, .note, ul.terms li, .field > label, .field .lab, .caption { font-size: 10.5pt; }
+    .note { margin: 6pt 0 8pt; }
+    ul.terms { margin: 2pt 0 8pt; }
+    ul.terms li { margin: 0 0 3pt; }
+    h2.section, .field { break-inside: avoid; }
+
+    .field {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0 8px;
+      margin: 0 0 5pt;
+    }
+    .field > label, .field .lab { margin: 0; flex: 0 1 auto; }
+    input[type="text"],
+    input[type="date"],
+    input[type="tel"],
+    input[type="email"],
+    textarea {
+      flex: 1 1 160px;
+      border: 0 !important;
+      border-bottom: 1px solid #222 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      padding: 0 0 1pt !important;
+      min-height: 0 !important;
+      height: auto !important;
+      color: #000 !important;
+      font-style: normal !important;
+      font-size: 11pt !important;
+      resize: none !important;
+      overflow: hidden !important;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator { display: none !important; }
+    textarea { width: 100%; flex-basis: 100%; field-sizing: content; rows: 1; }
+    .checks, .radios { margin: 2pt 0 8pt; gap: 2pt 10pt; }
+    .checks label, .radios label { padding: 0 8pt 0 0; min-height: 0; }
+    .sig-block { margin: 0 0 8pt; break-inside: avoid; }
+    .sig-row { grid-template-columns: 1fr 130px; gap: 8px; }
+    .pad-wrap canvas { display: none !important; }
+    .pad-wrap .sig-print {
+      display: block !important;
+      height: 70px;
+      border: 0;
+      border-bottom: 1px solid #222;
+      background: transparent;
+    }
+    a { color: #000; text-decoration: none; }
+    .footer { margin-top: 16pt; font-size: 10pt; }
+  }
+</style>
+</head>
+<body>
+  <div class="toolbar no-screen-hide">
+    <div class="brand">NE City Roofing agreement</div>
+    <div class="actions">
+      <span class="status" id="saveStatus" aria-live="polite"></span>
+      <button type="button" class="primary" id="btnPrint">Save as PDF / Print</button>
+      <button type="button" class="secondary" id="btnClearConfirm">Clear form</button>
+    </div>
+  </div>
+
+  <form class="sheet" id="agreement" autocomplete="on">
+    <div class="title-bar">NE CITY ROOFING</div>
+    <p class="subtitle">ROOFING INSTALLATION / REPLACEMENT AGREEMENT&nbsp;&nbsp;|&nbsp;&nbsp;Residential & Commercial</p>
+
+    <div class="contact">
+      <p>CSLB #1153916&nbsp;&nbsp;|&nbsp;&nbsp;4160 Eagle Rock Blvd., Los Angeles, CA 90065</p>
+      <p>323-696-5640&nbsp;&nbsp;|&nbsp;&nbsp;eli@necityroofing.com</p>
+    </div>
+    <p class="caption">Complete blanks and attach applicable California statutory notices before signing.</p>
+
+    <h2 class="section">1. Customer and project</h2>
+
+    <div class="field">
+      <label for="agreement_date">Agreement date:</label>
+      <input id="agreement_date" name="agreement_date" type="date">
+    </div>
+    <div class="field">
+      <label for="customer_name">Customer / owner name:</label>
+      <input id="customer_name" name="customer_name" type="text">
+    </div>
+    <div class="field">
+      <label for="customer_address">Customer address:</label>
+      <input id="customer_address" name="customer_address" type="text">
+    </div>
+    <div class="field">
+      <label for="jobsite_address">Jobsite address:</label>
+      <input id="jobsite_address" name="jobsite_address" type="text">
+    </div>
+    <div class="field">
+      <label for="phone_email">Phone / email:</label>
+      <input id="phone_email" name="phone_email" type="text">
+    </div>
+    <div class="field">
+      <label for="salesperson_registration">Home improvement salesperson / registration (if applicable):</label>
+      <input id="salesperson_registration" name="salesperson_registration" type="text">
+    </div>
+
+    <h2 class="section">2. Work and materials</h2>
+
+    <div class="checks" role="group" aria-label="Work and materials types">
+      <label><input type="checkbox" name="type_residential" id="type_residential"> Residential</label>
+      <label><input type="checkbox" name="type_commercial" id="type_commercial"> Commercial</label>
+      <label><input type="checkbox" name="type_reroof" id="type_reroof"> Reroof</label>
+      <label><input type="checkbox" name="type_new_installation" id="type_new_installation"> New installation</label>
+      <label><input type="checkbox" name="type_attached_garage" id="type_attached_garage"> Attached garage</label>
+      <label><input type="checkbox" name="type_detached_garage" id="type_detached_garage"> Detached garage</label>
+    </div>
+
+    <div class="field">
+      <label for="roof_area_squares">Roof area / approximate squares:</label>
+      <input id="roof_area_squares" name="roof_area_squares" type="text">
+    </div>
+    <div class="field">
+      <label for="roof_system_specs">Roof system, brand, color and specifications:</label>
+      <textarea id="roof_system_specs" name="roof_system_specs" rows="1"></textarea>
+    </div>
+    <div class="field">
+      <label for="tearoff_decking_flashing_ventilation">Tear-off / decking / flashing / ventilation details:</label>
+      <textarea id="tearoff_decking_flashing_ventilation" name="tearoff_decking_flashing_ventilation" rows="1"></textarea>
+    </div>
+    <div class="field">
+      <label for="included_materials_labor">Included materials and labor:</label>
+      <textarea id="included_materials_labor" name="included_materials_labor" rows="1"></textarea>
+    </div>
+    <div class="field">
+      <label for="exclusions_owner_supplied">Exclusions / owner-supplied items:</label>
+      <textarea id="exclusions_owner_supplied" name="exclusions_owner_supplied" rows="1"></textarea>
+    </div>
+    <div class="field">
+      <label for="permits_inspections">Permits and inspections (responsible party):</label>
+      <input id="permits_inspections" name="permits_inspections" type="text">
+    </div>
+    <div class="field">
+      <label for="estimated_start_date">Estimated start date:</label>
+      <input id="estimated_start_date" name="estimated_start_date" type="date">
+    </div>
+    <div class="field">
+      <label for="estimated_completion_date">Estimated completion date:</label>
+      <input id="estimated_completion_date" name="estimated_completion_date" type="date">
+    </div>
+    <div class="field">
+      <label for="substantial_commencement">Substantial commencement description:</label>
+      <textarea id="substantial_commencement" name="substantial_commencement" rows="1"></textarea>
+    </div>
+    <div class="field">
+      <span class="lab" id="estimate_attached_label">Detailed estimate / specifications attached and incorporated:</span>
+      <div class="radios" role="radiogroup" aria-labelledby="estimate_attached_label">
+        <label><input type="radio" name="estimate_attached" id="estimate_attached_yes" value="Yes"> Yes</label>
+        <label><input type="radio" name="estimate_attached" id="estimate_attached_no" value="No"> No</label>
+      </div>
+    </div>
+
+    <h2 class="section">3. Price and payment</h2>
+
+    <div class="field">
+      <label for="total_contract_price">Total contract price ($):</label>
+      <input id="total_contract_price" name="total_contract_price" type="text" inputmode="decimal">
+    </div>
+    <div class="field">
+      <label for="down_payment">Down payment ($):</label>
+      <input id="down_payment" name="down_payment" type="text" inputmode="decimal">
+    </div>
+    <div class="field">
+      <label for="progress_payment_milestones">Progress payment milestones and amounts (attach if needed):</label>
+      <textarea id="progress_payment_milestones" name="progress_payment_milestones" rows="1"></textarea>
+    </div>
+    <div class="field">
+      <label for="final_payment_trigger">Final payment trigger:</label>
+      <input id="final_payment_trigger" name="final_payment_trigger" type="text">
+    </div>
+    <div class="field">
+      <label for="finance_charge">Finance charge (if any):</label>
+      <input id="finance_charge" name="finance_charge" type="text">
+    </div>
+    <p class="note">For covered California home improvement work, the down payment generally cannot exceed the lesser of $1,000 or 10% of contract price unless a lawful exception applies. Progress payments must comply with California law.</p>
+
+    <h2 class="section">4. Essential terms</h2>
+    <ul class="terms">
+      <li>Contractor performs the written scope and mutually signed change orders only.</li>
+      <li>Concealed or damaged decking, fascia, framing, and other unforeseen conditions require a written change order stating cost and time effects before extra work, except where immediate safety measures are necessary.</li>
+      <li>Contractor supplies included materials unless the signed scope expressly identifies owner-supplied materials.</li>
+      <li>Weather, inspections, concealed conditions and material delays may affect the schedule; changes will be communicated and documented as legally required.</li>
+      <li>Owner provides reasonable access; contractor is responsible for jobsite safety, agreed protection and cleanup.</li>
+      <li>Permits and inspections will be handled as specified above.</li>
+      <li>Warranty: workmanship term, covered work and exclusions must be specified in writing; manufacturer warranties are separate.</li>
+      <li>No provision waives statutory consumer rights, lien rights, or required legal remedies.</li>
+    </ul>
+    <div class="field">
+      <label for="workmanship_warranty">Workmanship warranty term / coverage:</label>
+      <textarea id="workmanship_warranty" name="workmanship_warranty" rows="1"></textarea>
+    </div>
+    <div class="field">
+      <label for="written_exclusions">Written exclusions:</label>
+      <textarea id="written_exclusions" name="written_exclusions" rows="1"></textarea>
+    </div>
+
+    <h2 class="section">5. Changes and concealed wood</h2>
+    <div class="field">
+      <label for="decking_lumber_allowance">Included decking / lumber allowance (if any):</label>
+      <input id="decking_lumber_allowance" name="decking_lumber_allowance" type="text">
+    </div>
+    <div class="field">
+      <label for="additional_decking_unit_price">Additional decking / lumber unit price or written change-order process:</label>
+      <textarea id="additional_decking_unit_price" name="additional_decking_unit_price" rows="1"></textarea>
+    </div>
+    <p class="note">Any extra material or labor must be authorized by a signed change order before billing, subject to applicable law.</p>
+
+    <h2 class="section">Authorization</h2>
+    <div class="field">
+      <label for="customer_printed_name">Customer printed name:</label>
+      <input id="customer_printed_name" name="customer_printed_name" type="text">
+    </div>
+
+    <div class="sig-block">
+      <div class="lab">Customer signature / date:</div>
+      <div class="sig-row">
+        <div class="pad-wrap">
+          <canvas id="customer_signature" class="sig-pad" width="600" height="160" tabindex="0" aria-label="Customer signature"></canvas>
+          <img class="sig-print" id="customer_signature_img" alt="">
+          <div class="pad-actions"><button type="button" id="clear_customer_signature" data-clear="customer_signature">Clear</button></div>
+        </div>
+        <div class="field" style="margin:0">
+          <label for="customer_signature_date"><span class="visually-hidden">Customer signature date</span></label>
+          <input id="customer_signature_date" name="customer_signature_date" type="date">
+        </div>
+      </div>
+    </div>
+
+    <div class="sig-block">
+      <div class="lab">Contractor representative signature / date:</div>
+      <div class="sig-row">
+        <div class="pad-wrap">
+          <canvas id="contractor_signature" class="sig-pad" width="600" height="160" tabindex="0" aria-label="Contractor representative signature"></canvas>
+          <img class="sig-print" id="contractor_signature_img" alt="">
+          <div class="pad-actions"><button type="button" id="clear_contractor_signature" data-clear="contractor_signature">Clear</button></div>
+        </div>
+        <div class="field" style="margin:0">
+          <label for="contractor_signature_date"><span class="visually-hidden">Contractor representative signature date</span></label>
+          <input id="contractor_signature_date" name="contractor_signature_date" type="date">
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-actions no-print">
+      <button type="button" class="primary" id="btnPrintBottom">Save as PDF / Print</button>
+      <button type="button" class="secondary" id="btnClearBottom">Clear form</button>
+    </div>
+
+    <h2 class="section">California compliance — before use</h2>
+    <p class="note">This editable template does not replace required California home-improvement statutory text. For covered residential work, attach the current CSLB-required notices, mechanics lien warning, insurance statements, cancellation notice/form(s), and any other applicable disclosures in their prescribed wording, format, and placement. Verify down-payment and progress-payment limits, licensing, permits, and any service-and-repair exceptions. Commercial agreements may have different requirements. Have California construction counsel review before use.</p>
+    <p class="note">Official guidance: <a href="https://www.cslb.ca.gov/consumers/hire_a_contractor/contracts_and_binding_agreements.aspx">https://www.cslb.ca.gov/consumers/hire_a_contractor/contracts_and_binding_agreements.aspx</a></p>
+    <p class="note">CSLB sample: <a href="https://www.cslb.ca.gov/Resources/GuidesAndPublications/2025/SAMPLE%20HOME%20IMPROVEMENT%20CONTRACT.pdf">https://www.cslb.ca.gov/Resources/GuidesAndPublications/2025/SAMPLE%20HOME%20IMPROVEMENT%20CONTRACT.pdf</a></p>
+
+    <p class="footer">NE City Roofing&nbsp;&nbsp;•&nbsp;&nbsp;Contract template — legal review required</p>
+  </form>
+
+<script>
+(function () {
+  const STORAGE_KEY = "necity-roofing-agreement-v1";
+  const form = document.getElementById("agreement");
+  const statusEl = document.getElementById("saveStatus");
+  let saveTimer = null;
+
+  function showSaved() {
+    const now = new Date();
+    const t = now.toLocaleTimeString([], { hour: "numeric", minute: "2-digit" });
+    statusEl.textContent = "Saved " + t;
+  }
+
+  function collect() {
+    const data = { fields: {}, checks: {}, radios: {}, sigs: {} };
+    form.querySelectorAll("input[type=text], input[type=date], input[type=tel], input[type=email], textarea").forEach(function (el) {
+      data.fields[el.name] = el.value;
+    });
+    form.querySelectorAll("input[type=checkbox]").forEach(function (el) {
+      data.checks[el.name] = !!el.checked;
+    });
+    form.querySelectorAll("input[type=radio]").forEach(function (el) {
+      if (el.checked) data.radios[el.name] = el.value;
+    });
+    document.querySelectorAll("canvas.sig-pad").forEach(function (c) {
+      if (c.dataset.hasInk === "1") data.sigs[c.id] = c.toDataURL("image/png");
+    });
+    return data;
+  }
+
+  function save() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(collect()));
+      showSaved();
+    } catch (e) {
+      statusEl.textContent = "Could not autosave on this device";
+    }
+  }
+
+  function scheduleSave() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(save, 250);
+  }
+
+  function restore() {
+    var raw;
+    try { raw = localStorage.getItem(STORAGE_KEY); } catch (e) { return; }
+    if (!raw) return;
+    var data;
+    try { data = JSON.parse(raw); } catch (e) { return; }
+    if (data.fields) {
+      Object.keys(data.fields).forEach(function (k) {
+        var el = form.elements[k];
+        if (el && el.type !== "checkbox" && el.type !== "radio") el.value = data.fields[k] || "";
+      });
+    }
+    if (data.checks) {
+      Object.keys(data.checks).forEach(function (k) {
+        var el = form.elements[k];
+        if (el) el.checked = !!data.checks[k];
+      });
+    }
+    if (data.radios) {
+      Object.keys(data.radios).forEach(function (k) {
+        var val = data.radios[k];
+        var el = form.querySelector('input[type=radio][name="' + k + '"][value="' + val + '"]');
+        if (el) el.checked = true;
+      });
+    }
+    if (data.sigs) {
+      Object.keys(data.sigs).forEach(function (id) {
+        var canvas = document.getElementById(id);
+        if (canvas && data.sigs[id]) loadSig(canvas, data.sigs[id]);
+      });
+    }
+    showSaved();
+  }
+
+  function clearForm() {
+    if (!window.confirm("Clear all filled-in answers and signatures from this form? This cannot be undone.")) return;
+    form.reset();
+    document.querySelectorAll("canvas.sig-pad").forEach(clearPad);
+    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+    statusEl.textContent = "Form cleared";
+  }
+
+  /* -------- Signature pads (mouse + touch + pen) -------- */
+  function padSize(canvas) {
+    var wrap = canvas.parentElement;
+    var cssW = wrap.clientWidth || 300;
+    var cssH = 110;
+    var ratio = window.devicePixelRatio || 1;
+    var prev = canvas.dataset.hasInk === "1" ? canvas.toDataURL("image/png") : null;
+    canvas.style.width = cssW + "px";
+    canvas.style.height = cssH + "px";
+    canvas.width = Math.max(1, Math.round(cssW * ratio));
+    canvas.height = Math.max(1, Math.round(cssH * ratio));
+    var ctx = canvas.getContext("2d");
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.lineWidth = 2.25;
+    ctx.strokeStyle = "#0a2340";
+    ctx.clearRect(0, 0, cssW, cssH);
+    if (prev) {
+      var img = new Image();
+      img.onload = function () {
+        ctx.drawImage(img, 0, 0, cssW, cssH);
+        syncPrintImage(canvas);
+      };
+      img.src = prev;
+    } else {
+      syncPrintImage(canvas);
+    }
+  }
+
+  function loadSig(canvas, dataUrl) {
+    var img = new Image();
+    img.onload = function () {
+      var cssW = canvas.clientWidth || 300;
+      var cssH = canvas.clientHeight || 110;
+      var ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0, cssW, cssH);
+      canvas.dataset.hasInk = "1";
+      syncPrintImage(canvas);
+    };
+    img.src = dataUrl;
+  }
+
+  function clearPad(canvas) {
+    canvas.dataset.hasInk = "0";
+    padSize(canvas);
+    scheduleSave();
+  }
+
+  function syncPrintImage(canvas) {
+    var img = document.getElementById(canvas.id + "_img");
+    if (!img) return;
+    if (canvas.dataset.hasInk === "1") img.src = canvas.toDataURL("image/png");
+    else img.removeAttribute("src");
+  }
+
+  function attachPad(canvas) {
+    var drawing = false;
+    var last = null;
+
+    function pt(ev) {
+      var r = canvas.getBoundingClientRect();
+      var src = ev;
+      if (ev.touches && ev.touches[0]) src = ev.touches[0];
+      else if (ev.changedTouches && ev.changedTouches[0]) src = ev.changedTouches[0];
+      return { x: src.clientX - r.left, y: src.clientY - r.top };
+    }
+    function start(ev) {
+      ev.preventDefault();
+      drawing = true;
+      last = pt(ev);
+    }
+    function move(ev) {
+      if (!drawing) return;
+      ev.preventDefault();
+      var p = pt(ev);
+      var ctx = canvas.getContext("2d");
+      ctx.beginPath();
+      ctx.moveTo(last.x, last.y);
+      ctx.lineTo(p.x, p.y);
+      ctx.stroke();
+      last = p;
+      canvas.dataset.hasInk = "1";
+    }
+    function end(ev) {
+      if (!drawing) return;
+      ev.preventDefault();
+      drawing = false;
+      last = null;
+      syncPrintImage(canvas);
+      scheduleSave();
+    }
+    canvas.addEventListener("mousedown", start);
+    canvas.addEventListener("mousemove", move);
+    window.addEventListener("mouseup", end);
+    canvas.addEventListener("touchstart", start, { passive: false });
+    canvas.addEventListener("touchmove", move, { passive: false });
+    canvas.addEventListener("touchend", end, { passive: false });
+    canvas.addEventListener("touchcancel", end, { passive: false });
+    canvas.addEventListener("pointerdown", function (ev) {
+      if (ev.pointerType === "mouse" || ev.pointerType === "pen") {
+        /* mousedown already covers mouse; pen uses pointer */
+        if (ev.pointerType === "pen") start(ev);
+      }
+    });
+    padSize(canvas);
+  }
+
+  document.querySelectorAll("canvas.sig-pad").forEach(attachPad);
+  document.querySelectorAll("button[data-clear]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      clearPad(document.getElementById(btn.getAttribute("data-clear")));
+    });
+  });
+  window.addEventListener("resize", function () {
+    document.querySelectorAll("canvas.sig-pad").forEach(padSize);
+  });
+
+  form.addEventListener("input", scheduleSave);
+  form.addEventListener("change", scheduleSave);
+
+  function preparePrint() {
+    document.querySelectorAll("textarea").forEach(function (el) {
+      el.style.height = "auto";
+      el.style.height = Math.max(24, el.scrollHeight) + "px";
+    });
+    document.querySelectorAll("canvas.sig-pad").forEach(syncPrintImage);
+    save();
+  }
+  document.getElementById("btnPrint").addEventListener("click", function () {
+    preparePrint();
+    window.print();
+  });
+  document.getElementById("btnClearConfirm").addEventListener("click", clearForm);
+  document.getElementById("btnClearBottom").addEventListener("click", clearForm);
+  document.getElementById("btnPrintBottom").addEventListener("click", function () { preparePrint(); window.print(); });
+  window.addEventListener("beforeprint", preparePrint);
+  window.addEventListener("afterprint", function () {
+    document.querySelectorAll("textarea").forEach(function (el) { el.style.height = ""; });
+  });
+
+  restore();
+})();
+</script>
+</body>
+</html>
