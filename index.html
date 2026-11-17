@@ -267,6 +267,21 @@
   body.customer-mode .locked-pad .pad-actions { display: none !important; }
   body.customer-mode .customer-editable input, body.customer-mode .customer-editable canvas { background: #fffbea; border-color: #e0a800; }
   .doc-id-line { display: none; }
+  h3.subsection { font-family: var(--serif); font-style: italic; color: var(--navy); font-size: 17px; text-align: center; margin: 18px 0 8px; }
+  ul.terms.plain { list-style: none; padding-left: 0; }
+  ol.checklist { margin: 4px 0 10px; padding-left: 26px; }
+  ol.checklist li { margin: 0 0 6px; line-height: 1.4; }
+  .note.center { text-align: center; }
+  table.price-table { width: 100%; border-collapse: collapse; margin: 4px 0 12px; font-size: 15px; }
+  table.price-table td { padding: 3px 6px; border-bottom: 1px solid #e3e9ef; }
+  table.price-table td:nth-child(2) { width: 22%; white-space: nowrap; }
+  table.price-table td:nth-child(3) { width: 30%; }
+  table.price-table tr.grp-end td { border-bottom: 2px solid #b9cde0; }
+  .dl-link { display: inline-block; font-weight: 700; padding: 8px 12px; border: 1px solid var(--navy); border-radius: 6px; text-decoration: none; }
+  .pdf-render h3.subsection { font-size: 15px; margin: 12px 0 6px; }
+  .pdf-render ol.checklist li, .pdf-render table.price-table { font-size: 13px; }
+  .pdf-render ol.checklist li { margin: 0 0 3px; }
+  .pdf-render table.price-table td { padding: 1px 4px; }
   @media (max-width: 560px) {
     .toolbar { position: static; padding: 8px 10px; }
     .toolbar .actions button { padding: 8px 10px; font-size: 13px; }
@@ -344,6 +359,11 @@
     .note { margin: 6pt 0 8pt; }
     ul.terms { margin: 2pt 0 8pt; }
     ul.terms li { margin: 0 0 3pt; }
+    h3.subsection { font-size: 12pt; margin: 10pt 0 5pt; break-after: avoid; }
+    ol.checklist li, table.price-table { font-size: 10pt; }
+    ol.checklist li { margin: 0 0 2pt; break-inside: avoid; }
+    table.price-table td { padding: 1pt 4pt; }
+    table.price-table tr { break-inside: avoid; }
     h2.section, .field { break-inside: avoid; }
 
     .field {
@@ -528,7 +548,6 @@
       <li>Concealed or damaged decking, fascia, framing, and other unforeseen conditions require a written change order stating cost and time effects before extra work, except where immediate safety measures are necessary.</li>
       <li>Contractor supplies included materials unless the signed scope expressly identifies owner-supplied materials.</li>
       <li>Weather, inspections, concealed conditions and material delays may affect the schedule; changes will be communicated and documented as legally required.</li>
-      <li>Owner provides reasonable access; contractor is responsible for jobsite safety, agreed protection and cleanup.</li>
       <li>Permits and inspections will be handled as specified above.</li>
       <li>Warranty: workmanship term, covered work and exclusions must be specified in writing; manufacturer warranties are separate.</li>
       <li>No provision waives statutory consumer rights, lien rights, or required legal remedies.</li>
@@ -552,6 +571,120 @@
       <textarea id="additional_decking_unit_price" name="additional_decking_unit_price" rows="1"></textarea>
     </div>
     <p class="note">Any extra material or labor must be authorized by a signed change order before billing, subject to applicable law.</p>
+
+    <h2 class="section">6. Unused materials</h2>
+    <p class="note">Unused materials purchased specifically for this project and separately charged to Customer do not belong to Customer. They will be identified and picked up. Contractor inventory remains Contractor property.</p>
+
+    <h2 class="section">7. Material substitutions / special delivery</h2>
+    <p class="note">If specified products are discontinued or unavailable, Contractor will submit the substitute and any additional procurement, transportation, labor, or schedule charge for written approval before proceeding.</p>
+
+    <h2 class="section">8. Access, protection and owner responsibilities</h2>
+    <p class="note">Customer should move vehicles, remove valuables around work area, advise occupants about noise, vibration, dust and restricted access. Contractor will use reasonable site protection, cleanup and safety practices. Any solar, HVAC, satellite or other equipment disconnect/reconnect must be expressly assigned in scope and performed by qualified personnel where required.</p>
+
+    <h2 class="section">9. Residential-specific California home improvement terms</h2>
+    <p class="note">Residential work generally requires strict Business and Professions Code §7159 form and notice requirements. Before presenting this agreement to a homeowner, add the current prescribed full Mechanics Lien Warning, Checklist for Homeowners, CSLB contact information, insurance notices, start/completion disclosures, payment schedule disclosures and applicable statutory cancellation notice with detachable cancellation forms. Do not treat this reminder as a substitute for those notices.</p>
+    <div class="field">
+      <label for="res_down_payment">Down payment ($):</label>
+      <input id="res_down_payment" name="res_down_payment" type="text" inputmode="decimal">
+    </div>
+    <p class="note">Confirm it does not exceed the lesser of $1,000 or 10% of the contract price, absent a lawful exception. Progress payments must comply with California limits.</p>
+    <div class="checks" role="group" aria-label="Notices attached">
+      <label><input type="checkbox" name="notice_3day_cancel" id="notice_3day_cancel"> 3-business-day cancellation notice attached</label>
+      <label><input type="checkbox" name="notice_5day_cancel" id="notice_5day_cancel"> 5-business-day notice attached if required</label>
+      <label><input type="checkbox" name="notice_other_attached" id="notice_other_attached"> Other applicable notice attached</label>
+    </div>
+    <div class="sig-block">
+      <div class="lab">Homeowner signature acknowledging required notices / date:</div>
+      <div class="sig-row">
+        <div class="pad-wrap">
+          <canvas id="notices_ack_signature" class="sig-pad" width="600" height="160" tabindex="0" aria-label="Homeowner signature acknowledging required notices"></canvas>
+          <img class="sig-print" id="notices_ack_signature_img" alt="">
+          <div class="pad-actions"><button type="button" id="clear_notices_ack_signature" data-clear="notices_ack_signature">Clear</button></div>
+        </div>
+        <div class="field" style="margin:0">
+          <label for="notices_ack_date"><span class="visually-hidden">Homeowner notices acknowledgment date</span></label>
+          <input id="notices_ack_date" name="notices_ack_date" type="date">
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section">10. Addendum: Lumber clause and job prep checklist</h2>
+    <p class="note no-print"><a class="dl-link" href="Lumber-Clause-and-Job-Prep-Checklist.pdf" download>Download Lumber Clause &amp; Job Prep Checklist (PDF)</a></p>
+    <h3 class="subsection">Damaged Lumber Replacement Clause</h3>
+    <ul class="terms plain">
+      <li>Inspection of deteriorated lumber is a courtesy service that NE CITY ROOFING provides.</li>
+      <li>It must be understood that we will not be held liable for any missed or unchanged lumber.</li>
+      <li>We are not liable for termite-infested lumber.</li>
+      <li>Condition of existing lumber can only be adequately assessed after the entire roof is removed. If the roof is not completely removed, then an assessment of the visibly exposed lumber would be done.</li>
+      <li>All replaced lumber is standard Douglas Fir Grade.</li>
+      <li>Redwood, Spruce lumber or treated wood is available upon request and at an additional charge.</li>
+      <li><strong><em>PAINTING OF ALL LUMBER REPLACED IS NOT INCLUDED.</em></strong></li>
+      <li><strong><em>ALL DETERIORATED LUMBER REPLACED IS AT ADDITIONAL COST AS FOLLOWS:</em></strong></li>
+      <li>All prices listed below include materials, labor and disposal.</li>
+    </ul>
+    <table class="price-table">
+      <tbody>
+        <tr><td>1” x 4” Roof Board</td><td>$5.50</td><td>per linear foot</td></tr>
+        <tr><td>1” x 6” Roof Board</td><td>$6.50</td><td>per linear foot</td></tr>
+        <tr><td>1” x 8” Roof Board</td><td>$7.98</td><td>per linear foot</td></tr>
+        <tr><td>1” x 4” Ship Lap</td><td>$8.25</td><td>per linear foot</td></tr>
+        <tr class="grp-end"><td>1” x 8” Ship Lap</td><td>$8.88</td><td>per linear foot</td></tr>
+        <tr><td>1” x 4” Fascia Board</td><td>$8.00</td><td>per linear foot</td></tr>
+        <tr><td>1” x 6” Fascia Board</td><td>$8.50</td><td>per linear foot</td></tr>
+        <tr class="grp-end"><td>1” x 8” Fascia Board</td><td>$9.00</td><td>per linear foot</td></tr>
+        <tr><td>2” x 6” Fascia Board</td><td>$13.50</td><td>per linear foot</td></tr>
+        <tr><td>2” x 8” Fascia Board</td><td>$14.00</td><td>per linear foot</td></tr>
+        <tr class="grp-end"><td>2” x 10” Fascia Board</td><td>$18.50</td><td>per linear foot</td></tr>
+        <tr><td>7/16” OSB Board 4’ x 8’</td><td>$99.00</td><td>per sheet</td></tr>
+        <tr><td>15/32” CDX Plywood 4’ x 8’</td><td>$107.00</td><td>per sheet</td></tr>
+        <tr class="grp-end"><td>7/16” Radiant Barrier 4’ x 8’</td><td>$123.00</td><td>per sheet</td></tr>
+        <tr><td>2” x 4” Rafter Tails (2’-3’ piece)</td><td>$123.00</td><td>per rafter tail</td></tr>
+        <tr><td>2” x 6” Rafter Tails (2’-3’ piece)</td><td>$156.00</td><td>per rafter tail</td></tr>
+      </tbody>
+    </table>
+    <p class="note center"><strong>-ACCEPTANCE-</strong><br>By initialing this, I have read, understand, and accept the above information.</p>
+    <div class="field">
+      <label for="lumber_initials">INITIAL &amp; RETURN:</label>
+      <input id="lumber_initials" name="lumber_initials" type="text" maxlength="12">
+    </div>
+
+    <h3 class="subsection">Job Preparation Check List</h3>
+    <ol class="checklist">
+      <li>Pre-site: One of our employees will redraw your roof and double check all measurements. We order our materials from this drawing. He will knock on your door and if no one is home, he will leave a card.</li>
+      <li>Approximate Start Date: Our Production Manager will call you the week before your job is to begin in order to schedule the day the job will start. Remember, the start date in your contract is an approximate date.</li>
+      <li>Roof removal and replacement can be very dusty, and you can expect a certain amount of debris around the house during this process. However, we do our best to make it as clean and neat as possible. If possible, keep children and pets inside during the process.</li>
+      <li>Consolidate and cover any items in the garage and attic which may get dust or debris on them.</li>
+      <li>Cover anything under skylights which may be affected by dust and/or debris due to the removal and re-installation of the new roof.</li>
+      <li>In homes with open beam ceilings, extra care should be taken to cover furniture, rugs and other items that may get dusty, etc.</li>
+      <li>You may experience some vibration of your roof and walls from the loading of materials and installation of the new roof. Loose items (China, pictures, paintings, collectibles, etc.) should be secured or removed during the job. Chandeliers or lights not mounted on the ceiling should be secured.</li>
+      <li>Remove vehicles from the garage and driveway. We will need approximately one car space as a designated work area for materials and refuse.</li>
+      <li>Move pets to a secure environment away from the dust, debris and noise - possibly with friends or neighbor, or if you have a very anxious pet, maybe a Vet can give advice.</li>
+      <li>Cover and move plants, tables, or other items of concern that may be subject to dust and debris around the exterior of the house. For example, pools should be checked daily for debris and nails (we strongly suggest covering your pool while the project is in progress). Advise us of anything we may overlook.</li>
+      <li>Homeowner is responsible for getting Homeowners Association approval. Please fax approval to our office. We must have it so we can pull permits.</li>
+      <li>With homeowners’ approval, we will be placing a job sign in the front yard approximately one week before the job start and picking it up one - two weeks after job completion.</li>
+      <li>Any solar panels must be drained, disconnected and capped prior to start of job.</li>
+      <li>Any satellite dishes are the homeowner’s responsibility to remove, replace or adjust.</li>
+      <li>Homeowners responsibility to check water heater connections and make sure they are connected and ok.</li>
+      <li>We will be leaving a ladder up for final inspection when the job is completed.</li>
+    </ol>
+    <p class="note">If you have any questions or concerns before, during, or after your roofing project, please call us. While the job is in progress, call at once so that we may address your concerns immediately. Good communication is necessary to have a smooth roofing project. We thank you again for the opportunity to serve you and for your trust in our company.</p>
+    <div class="checks" role="group" aria-label="Checklist acknowledgment">
+      <label><input type="checkbox" name="jobprep_reviewed" id="jobprep_reviewed"> I have reviewed the above check List</label>
+    </div>
+    <div class="sig-block">
+      <div class="lab">Homeowners Signature / Date:</div>
+      <div class="sig-row">
+        <div class="pad-wrap">
+          <canvas id="jobprep_signature" class="sig-pad" width="600" height="160" tabindex="0" aria-label="Homeowner signature for job preparation checklist"></canvas>
+          <img class="sig-print" id="jobprep_signature_img" alt="">
+          <div class="pad-actions"><button type="button" id="clear_jobprep_signature" data-clear="jobprep_signature">Clear</button></div>
+        </div>
+        <div class="field" style="margin:0">
+          <label for="jobprep_date"><span class="visually-hidden">Job preparation checklist date</span></label>
+          <input id="jobprep_date" name="jobprep_date" type="date">
+        </div>
+      </div>
+    </div>
 
     <h2 class="section">Authorization</h2>
     <div class="field">
@@ -610,8 +743,10 @@
 (function () {
   "use strict";
   var DRAFT_KEY = "necity-roofing-agreement-v1";
-  var CUSTOMER_FIELDS = ["customer_printed_name", "customer_signature_date"];
+  var CUSTOMER_FIELDS = ["customer_printed_name", "customer_signature_date", "notices_ack_date", "lumber_initials", "jobprep_reviewed", "jobprep_date"];
   var CUSTOMER_SIG = "customer_signature";
+  var CUSTOMER_SIGS = ["customer_signature", "notices_ack_signature", "jobprep_signature"];
+  var SIG_DATE = { customer_signature: "customer_signature_date", notices_ack_signature: "notices_ack_date", jobprep_signature: "jobprep_date" };
   var CONTRACTOR_SIG = "contractor_signature";
   var LIB_H2C = { src: "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js", integrity: "sha384-ZZ1pncU3bQe8y31yfZdMFdSpttDoPmOZg2wguVK9almUodir1PghgT0eY7Mrty8H" };
   var LIB_JSPDF = { src: "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js", integrity: "sha384-JcnsjUPPylna1s1fvi1u12X5qjY5OL56iySh75FdtrwhO/SWXgMjoVqcKyIIWOLk" };
@@ -635,6 +770,16 @@
   }
   function textEls() { return form.querySelectorAll("input[type=text], input[type=date], input[type=tel], input[type=email], textarea"); }
   function isCustomerField(name) { return CUSTOMER_FIELDS.indexOf(name) !== -1; }
+  function isCustomerSig(id) { return CUSTOMER_SIGS.indexOf(id) !== -1; }
+  /* section 3 and section 9 both show the down payment; keep them in step */
+  function syncDownPayment(src) {
+    var a = $("down_payment"), b = $("res_down_payment");
+    if (!a || !b) return;
+    if (src === b) a.value = b.value;
+    else if (src === a) b.value = a.value;
+    else if (!b.value && a.value) b.value = a.value;
+    else if (!a.value && b.value) a.value = b.value;
+  }
   function b64urlFromBytes(bytes) {
     var s = "", chunk = 0x8000;
     for (var i = 0; i < bytes.length; i += chunk) s += String.fromCharCode.apply(null, bytes.subarray(i, i + chunk));
@@ -790,7 +935,7 @@
       drawing = false; last = null; cur = null;
       canvas._signedAt = new Date().toISOString();
       syncPrintImage(canvas);
-      if (mode === "customer" && canvas.id === CUSTOMER_SIG && !$("customer_signature_date").value) $("customer_signature_date").value = todayISO();
+      if (mode === "customer" && isCustomerSig(canvas.id) && SIG_DATE[canvas.id] && !$(SIG_DATE[canvas.id]).value) $(SIG_DATE[canvas.id]).value = todayISO();
       scheduleSave();
     }
     canvas.addEventListener("mousedown", start);
@@ -845,7 +990,7 @@
   function lockPayload() {
     var p = { v: 1, f: {}, c: {}, r: {} };
     textEls().forEach(function (el) { if (!isCustomerField(el.name) && el.value) p.f[el.name] = el.value; });
-    form.querySelectorAll("input[type=checkbox]").forEach(function (el) { if (el.checked) p.c[el.name] = 1; });
+    form.querySelectorAll("input[type=checkbox]").forEach(function (el) { if (el.checked && !isCustomerField(el.name)) p.c[el.name] = 1; });
     form.querySelectorAll("input[type=radio]").forEach(function (el) { if (el.checked) p.r[el.name] = el.value; });
     var cs = $(CONTRACTOR_SIG);
     if (cs.dataset.hasInk === "1") {
@@ -869,11 +1014,16 @@
     try {
       var all = collectAll(), toStore = all;
       if (mode === "customer") {
-        toStore = { fields: {}, sigs: {}, strokes: {}, signedAt: {} };
-        CUSTOMER_FIELDS.forEach(function (k) { toStore.fields[k] = all.fields[k] || ""; });
-        if (all.strokes[CUSTOMER_SIG]) toStore.strokes[CUSTOMER_SIG] = all.strokes[CUSTOMER_SIG];
-        if (all.sigs[CUSTOMER_SIG]) toStore.sigs[CUSTOMER_SIG] = all.sigs[CUSTOMER_SIG];
-        if (all.signedAt[CUSTOMER_SIG]) toStore.signedAt[CUSTOMER_SIG] = all.signedAt[CUSTOMER_SIG];
+        toStore = { fields: {}, checks: {}, sigs: {}, strokes: {}, signedAt: {} };
+        CUSTOMER_FIELDS.forEach(function (k) {
+          if (k in all.checks) toStore.checks[k] = all.checks[k];
+          else toStore.fields[k] = all.fields[k] || "";
+        });
+        CUSTOMER_SIGS.forEach(function (id) {
+          if (all.strokes[id]) toStore.strokes[id] = all.strokes[id];
+          if (all.sigs[id]) toStore.sigs[id] = all.sigs[id];
+          if (all.signedAt[id]) toStore.signedAt[id] = all.signedAt[id];
+        });
       }
       localStorage.setItem(storageKey, JSON.stringify(toStore));
       showSaved();
@@ -886,13 +1036,13 @@
     try { raw = localStorage.getItem(storageKey); } catch (e) { return; }
     if (!raw) return;
     try { data = JSON.parse(raw); } catch (e) { return; }
-    var allowed = function (k) { return mode === "contractor" || isCustomerField(k) || k === CUSTOMER_SIG; };
+    var allowed = function (k) { return mode === "contractor" || isCustomerField(k) || isCustomerSig(k); };
     Object.keys(data.fields || {}).forEach(function (k) {
       var el = form.elements[k];
       if (el && allowed(k) && el.type !== "checkbox" && el.type !== "radio") el.value = data.fields[k] || "";
     });
+    Object.keys(data.checks || {}).forEach(function (k) { var el = form.elements[k]; if (el && allowed(k) && el.type === "checkbox") el.checked = !!data.checks[k]; });
     if (mode === "contractor") {
-      Object.keys(data.checks || {}).forEach(function (k) { var el = form.elements[k]; if (el) el.checked = !!data.checks[k]; });
       Object.keys(data.radios || {}).forEach(function (k) {
         var el = form.querySelector('input[type=radio][name="' + k + '"][value="' + data.radios[k] + '"]');
         if (el) el.checked = true;
@@ -907,6 +1057,7 @@
       c._fitStretch = true; loadSig(c, data.sigs[id]);
     });
     Object.keys(data.signedAt || {}).forEach(function (id) { var c = $(id); if (c && allowed(id)) c._signedAt = data.signedAt[id]; });
+    syncDownPayment();
     showSaved();
   }
 
@@ -930,8 +1081,8 @@
   function clearForm() {
     if (mode === "customer") {
       if (!window.confirm("Clear your name, signature and date? The rest of the agreement stays locked.")) return;
-      CUSTOMER_FIELDS.forEach(function (k) { form.elements[k].value = ""; });
-      clearPad($(CUSTOMER_SIG), true);
+      CUSTOMER_FIELDS.forEach(function (k) { var el = form.elements[k]; if (!el) return; if (el.type === "checkbox") el.checked = false; else el.value = ""; });
+      CUSTOMER_SIGS.forEach(function (id) { if ($(id)) clearPad($(id), true); });
       try { localStorage.removeItem(storageKey); } catch (e) {}
       statusEl.textContent = "Your entries were cleared";
       return;
@@ -964,19 +1115,20 @@
     document.querySelectorAll(".lock-only").forEach(function (el) { el.hidden = true; el.style.display = "none"; });
     form.reset();
     applyLocked(data);
+    syncDownPayment();
     /* lock every contractor control */
     form.querySelectorAll("input, textarea").forEach(function (el) {
-      if (isCustomerField(el.name)) { el.closest(".field").classList.add("customer-editable"); return; }
+      if (isCustomerField(el.name)) { var w = el.closest(".field, .checks"); if (w) w.classList.add("customer-editable"); return; }
       el.disabled = true;
     });
     var cs = $(CONTRACTOR_SIG);
     cs.dataset.locked = "1"; cs.tabIndex = -1;
     cs.closest(".pad-wrap").classList.add("locked-pad");
     $("clear_contractor_signature").disabled = true;
-    $(CUSTOMER_SIG).closest(".pad-wrap").classList.add("customer-editable");
+    CUSTOMER_SIGS.forEach(function (id) { if ($(id)) $(id).closest(".pad-wrap").classList.add("customer-editable"); });
     setTimeout(autosizeTextareas, 0);
     bannerEl.className = "lock-banner no-print";
-    bannerEl.innerHTML = "<strong>Prepared and locked by NE City Roofing. Only your name, signature and date can be filled in.</strong>" +
+    bannerEl.innerHTML = "<strong>Prepared and locked by NE City Roofing. Only your name, initials, signatures and dates can be filled in.</strong>" +
       "Document ID: <span class=\"docid\" id=\"bannerDocId\"></span> &nbsp;—&nbsp; NE City Roofing can confirm this ID matches the agreement they sent you. " +
       "When you finish, tap <b>Download signed PDF</b> and send the file to NE City Roofing.";
     $("bannerDocId").textContent = lockedDoc.docId;
@@ -1046,12 +1198,12 @@
   function pageBreaks(wrap, pageH) {
     var top0 = wrap.getBoundingClientRect().top;
     var total = wrap.scrollHeight;
-    var sel = ".title-bar, .subtitle, .contact, .caption, h2.section, .sheet > .field, .checks, .sheet > p.note, ul.terms li, .sig-block, .footer, .doc-id-line";
+    var sel = ".title-bar, .subtitle, .contact, .caption, h2.section, h3.subsection, .sheet > .field, .checks, .sheet > p.note, ul.terms li, ol.checklist li, table.price-table tr, .sig-block, .footer, .doc-id-line";
     var cands = [];
     wrap.querySelectorAll(sel).forEach(function (el) {
       var prev = el.previousElementSibling;
-      if (prev && prev.matches("h2.section")) return;             /* keep heading with first item */
-      if (el.matches("ul.terms li") && !el.previousElementSibling) return;
+      if (prev && prev.matches("h2.section, h3.subsection")) return;             /* keep heading with first item */
+      if (el.matches("ul.terms li, ol.checklist li, table.price-table tr") && !el.previousElementSibling) return;
       cands.push(Math.floor(el.getBoundingClientRect().top - top0) - 2);
     });
     cands.sort(function (a, b) { return a - b; });
@@ -1126,6 +1278,7 @@
     });
   });
   window.addEventListener("resize", function () { document.querySelectorAll("canvas.sig-pad").forEach(padSize); });
+  form.addEventListener("input", function (e) { if (e.target && (e.target.id === "down_payment" || e.target.id === "res_down_payment")) syncDownPayment(e.target); });
   form.addEventListener("input", scheduleSave);
   form.addEventListener("change", scheduleSave);
   ["btnPrint", "btnPrintBottom"].forEach(function (id) { $(id).addEventListener("click", doPrint); });
