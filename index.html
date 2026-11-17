@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>NE City Roofing — Roofing Installation / Replacement Agreement</title>
+<title>Eli Barajas Roofing — Roofing Installation / Replacement Agreement</title>
 <style>
   :root {
     --blue: #629DD1;
@@ -267,6 +267,8 @@
   body.customer-mode .locked-pad .pad-actions { display: none !important; }
   body.customer-mode .customer-editable input, body.customer-mode .customer-editable canvas { background: #fffbea; border-color: #e0a800; }
   .doc-id-line { display: none; }
+  textarea.scope { min-height: 230px; resize: vertical; overflow: hidden; }
+  h3.subsection.left { text-align: left; font-size: 16px; margin: 6px 0 4px; }
   h3.subsection { font-family: var(--serif); font-style: italic; color: var(--navy); font-size: 17px; text-align: center; margin: 18px 0 8px; }
   ul.terms.plain { list-style: none; padding-left: 0; }
   ol.checklist { margin: 4px 0 10px; padding-left: 26px; }
@@ -421,7 +423,7 @@
 </head>
 <body>
   <div class="toolbar no-screen-hide">
-    <div class="brand">NE City Roofing agreement</div>
+    <div class="brand">Eli Barajas Roofing agreement</div>
     <div class="actions">
       <span class="status" id="saveStatus" aria-live="polite"></span>
       <button type="button" class="primary" id="btnPdf">Download signed PDF</button>
@@ -433,7 +435,7 @@
   <div class="lock-banner no-print" id="lockBanner" role="status" hidden></div>
 
   <form class="sheet" id="agreement" autocomplete="on">
-    <div class="title-bar">NE CITY ROOFING</div>
+    <div class="title-bar">ELI BARAJAS ROOFING</div>
     <p class="subtitle">ROOFING INSTALLATION / REPLACEMENT AGREEMENT&nbsp;&nbsp;|&nbsp;&nbsp;Residential & Commercial</p>
 
     <div class="contact">
@@ -465,34 +467,69 @@
       <input id="phone_email" name="phone_email" type="text">
     </div>
 
-    <h2 class="section">2. Work and materials</h2>
+    <h2 class="section">2. Property type</h2>
 
-    <div class="checks" role="group" aria-label="Work and materials types">
+    <div class="checks" role="group" aria-label="Property type">
       <label><input type="checkbox" name="type_residential" id="type_residential"> Residential</label>
-      <label><input type="checkbox" name="type_commercial" id="type_commercial"> Commercial</label>
-      <label><input type="checkbox" name="type_reroof" id="type_reroof"> Reroof</label>
-      <label><input type="checkbox" name="type_nail_over" id="type_nail_over"> Nail over</label>
-      <label><input type="checkbox" name="type_coating" id="type_coating"> Coating</label>
-      <label><input type="checkbox" name="type_repair_maintenance" id="type_repair_maintenance"> Repair / maintenance</label>
       <label><input type="checkbox" name="type_attached_garage" id="type_attached_garage"> Attached garage</label>
       <label><input type="checkbox" name="type_detached_garage" id="type_detached_garage"> Detached garage</label>
+      <label><input type="checkbox" name="type_commercial" id="type_commercial"> Commercial</label>
     </div>
 
-    <div class="field">
-      <label for="roof_system_specs">Roof system, brand, color and specifications:</label>
-      <textarea id="roof_system_specs" name="roof_system_specs" rows="1"></textarea>
+    <h2 class="section">3. Services — check all that apply</h2>
+
+    <div class="checks" role="group" aria-label="Services">
+      <label><input type="checkbox" name="svc_new_roof_installation" id="svc_new_roof_installation"> New roof installation</label>
+      <label><input type="checkbox" name="type_reroof" id="type_reroof"> Full replacement</label>
+      <label><input type="checkbox" name="svc_roof_tearoff" id="svc_roof_tearoff"> Roof tear-off</label>
+      <label><input type="checkbox" name="svc_repair" id="svc_repair"> Repair</label>
+      <label><input type="checkbox" name="svc_leak_investigation" id="svc_leak_investigation"> Leak investigation</label>
+      <label><input type="checkbox" name="svc_scheduled_maintenance" id="svc_scheduled_maintenance"> Scheduled maintenance</label>
+      <label><input type="checkbox" name="svc_emergency_protection" id="svc_emergency_protection"> Emergency temporary protection</label>
+      <label><input type="checkbox" name="type_repair_maintenance" id="type_repair_maintenance"> Repair / maintenance</label>
+    </div>
+
+    <h2 class="section">4. Roofing installation type — check all that apply</h2>
+
+    <div class="checks" role="group" aria-label="Roofing installation type">
+      <label><input type="checkbox" name="type_nail_over" id="type_nail_over"> Shingle (nail over)</label>
+      <label><input type="checkbox" name="rt_torch_down" id="rt_torch_down"> Torch-down</label>
+      <label><input type="checkbox" name="rt_roll_roofing" id="rt_roll_roofing"> Roll roofing</label>
+      <label><input type="checkbox" name="rt_tile" id="rt_tile"> Tile</label>
+      <label><input type="checkbox" name="rt_two_piece_tile" id="rt_two_piece_tile"> 2-piece tile</label>
+      <label><input type="checkbox" name="rt_single_ply" id="rt_single_ply"> Single ply</label>
+      <label><input type="checkbox" name="type_coating" id="type_coating"> Coating</label>
+      <label><input type="checkbox" name="rt_asphalt_cool_roof" id="rt_asphalt_cool_roof"> Asphalt shingles / cool roof</label>
+      <label><input type="checkbox" name="rt_clay_concrete_tile" id="rt_clay_concrete_tile"> Clay or concrete tile</label>
+      <label><input type="checkbox" name="rt_modified_bitumen" id="rt_modified_bitumen"> Modified bitumen</label>
+      <label><input type="checkbox" name="rt_tpo" id="rt_tpo"> TPO</label>
+      <label><input type="checkbox" name="rt_pvc" id="rt_pvc"> PVC</label>
+      <label><input type="checkbox" name="rt_silicone_elastomeric" id="rt_silicone_elastomeric"> Silicone / elastomeric coating</label>
+      <label><input type="checkbox" name="rt_standing_seam_metal" id="rt_standing_seam_metal"> Standing seam metal</label>
+    </div>
+
+    <h3 class="subsection left">Components</h3>
+    <div class="checks" role="group" aria-label="Components">
+      <label><input type="checkbox" name="comp_flashing" id="comp_flashing"> Flashing / roof-to-wall</label>
+      <label><input type="checkbox" name="comp_skylights" id="comp_skylights"> Skylights</label>
+      <label><input type="checkbox" name="comp_gutters" id="comp_gutters"> Gutters / drainage</label>
+      <label><input type="checkbox" name="comp_ventilation" id="comp_ventilation"> Ventilation / O&#8217;Hagin / ridge vents</label>
+      <label><input type="checkbox" name="comp_solar_attic_fans" id="comp_solar_attic_fans"> Solar attic fans</label>
+      <label><input type="checkbox" name="comp_insulation" id="comp_insulation"> Insulation / radiant barrier</label>
+      <label><input type="checkbox" name="comp_decking" id="comp_decking"> Decking / OSB / plywood</label>
+      <label><input type="checkbox" name="comp_fascia_rafters" id="comp_fascia_rafters"> Fascia / rafters / lumber</label>
+      <label><input type="checkbox" name="comp_other" id="comp_other"> Other:</label>
     </div>
     <div class="field">
-      <label for="tearoff_decking_flashing_ventilation">Tear-off / decking / flashing / ventilation details:</label>
-      <textarea id="tearoff_decking_flashing_ventilation" name="tearoff_decking_flashing_ventilation" rows="1"></textarea>
+      <label for="comp_other_text">Other component(s):</label>
+      <input id="comp_other_text" name="comp_other_text" type="text">
     </div>
+
+    <h2 class="section">5. Scope of work</h2>
+
     <div class="field">
-      <label for="included_materials_labor">Included materials and labor:</label>
-      <textarea id="included_materials_labor" name="included_materials_labor" rows="1"></textarea>
-    </div>
-    <div class="field">
-      <label for="exclusions_owner_supplied">Exclusions / owner-supplied items:</label>
-      <textarea id="exclusions_owner_supplied" name="exclusions_owner_supplied" rows="1"></textarea>
+      <label for="scope_of_work"><span class="visually-hidden">Scope of work description</span></label>
+      <textarea id="scope_of_work" name="scope_of_work" class="scope" rows="10" placeholder="Describe the full scope of work: roof system, brand and color, tear-off, decking, flashing, ventilation, included materials and labor, exclusions and any owner-supplied items."></textarea>
     </div>
     <div class="field">
       <label for="permits_inspections">Permits and inspections (responsible party):</label>
@@ -506,43 +543,36 @@
       <label for="estimated_completion_date">Estimated completion date:</label>
       <input id="estimated_completion_date" name="estimated_completion_date" type="date">
     </div>
+
+    <h2 class="section">6. Price and payment</h2>
+
     <div class="field">
-      <label for="substantial_commencement">Substantial commencement description:</label>
-      <textarea id="substantial_commencement" name="substantial_commencement" rows="1"></textarea>
+      <label for="down_payment">Deposit ($):</label>
+      <input id="down_payment" name="down_payment" type="text" inputmode="decimal">
     </div>
     <div class="field">
-      <span class="lab" id="estimate_attached_label">Detailed estimate / specifications attached and incorporated:</span>
-      <div class="radios" role="radiogroup" aria-labelledby="estimate_attached_label">
-        <label><input type="radio" name="estimate_attached" id="estimate_attached_yes" value="Yes"> Yes</label>
-        <label><input type="radio" name="estimate_attached" id="estimate_attached_no" value="No"> No</label>
-      </div>
+      <label for="progress_payment_milestones">Progress payment ($):</label>
+      <input id="progress_payment_milestones" name="progress_payment_milestones" type="text" inputmode="decimal">
     </div>
-
-    <h2 class="section">3. Price and payment</h2>
-
+    <div class="field">
+      <label for="final_payment">Final payment ($):</label>
+      <input id="final_payment" name="final_payment" type="text" inputmode="decimal">
+    </div>
     <div class="field">
       <label for="total_contract_price">Total contract price ($):</label>
       <input id="total_contract_price" name="total_contract_price" type="text" inputmode="decimal">
     </div>
     <div class="field">
-      <label for="down_payment">Down payment ($):</label>
-      <input id="down_payment" name="down_payment" type="text" inputmode="decimal">
-    </div>
-    <div class="field">
-      <label for="progress_payment_milestones">Progress payment milestones and amounts (attach if needed):</label>
-      <textarea id="progress_payment_milestones" name="progress_payment_milestones" rows="1"></textarea>
-    </div>
-    <div class="field">
-      <label for="final_payment_trigger">Final payment trigger:</label>
+      <label for="final_payment_trigger">Final payment due upon:</label>
       <input id="final_payment_trigger" name="final_payment_trigger" type="text">
     </div>
     <div class="field">
       <label for="finance_charge">Finance charge (if any):</label>
       <input id="finance_charge" name="finance_charge" type="text">
     </div>
-    <p class="note">For covered California home improvement work, the down payment generally cannot exceed the lesser of $1,000 or 10% of contract price unless a lawful exception applies. Progress payments must comply with California law.</p>
+    <p class="note">For covered California home improvement work, the deposit (down payment) generally cannot exceed the lesser of $1,000 or 10% of contract price unless a lawful exception applies. Progress payments must comply with California law.</p>
 
-    <h2 class="section">4. Essential terms</h2>
+    <h2 class="section">7. Essential terms</h2>
     <ul class="terms">
       <li>Contractor performs the written scope and mutually signed change orders only.</li>
       <li>Concealed or damaged decking, fascia, framing, and other unforeseen conditions require a written change order stating cost and time effects before extra work, except where immediate safety measures are necessary.</li>
@@ -561,27 +591,16 @@
       <textarea id="written_exclusions" name="written_exclusions" rows="1"></textarea>
     </div>
 
-    <h2 class="section">5. Changes and concealed wood</h2>
-    <div class="field">
-      <label for="decking_lumber_allowance">Included decking / lumber allowance (if any):</label>
-      <input id="decking_lumber_allowance" name="decking_lumber_allowance" type="text">
-    </div>
-    <div class="field">
-      <label for="additional_decking_unit_price">Additional decking / lumber unit price or written change-order process:</label>
-      <textarea id="additional_decking_unit_price" name="additional_decking_unit_price" rows="1"></textarea>
-    </div>
-    <p class="note">Any extra material or labor must be authorized by a signed change order before billing, subject to applicable law.</p>
-
-    <h2 class="section">6. Unused materials</h2>
+    <h2 class="section">8. Unused materials</h2>
     <p class="note">Unused materials purchased specifically for this project and separately charged to Customer do not belong to Customer. They will be identified and picked up. Contractor inventory remains Contractor property.</p>
 
-    <h2 class="section">7. Material substitutions / special delivery</h2>
+    <h2 class="section">9. Material substitutions / special delivery</h2>
     <p class="note">If specified products are discontinued or unavailable, Contractor will submit the substitute and any additional procurement, transportation, labor, or schedule charge for written approval before proceeding.</p>
 
-    <h2 class="section">8. Access, protection and owner responsibilities</h2>
+    <h2 class="section">10. Access, protection and owner responsibilities</h2>
     <p class="note">Customer should move vehicles, remove valuables around work area, advise occupants about noise, vibration, dust and restricted access. Contractor will use reasonable site protection, cleanup and safety practices. Any solar, HVAC, satellite or other equipment disconnect/reconnect must be expressly assigned in scope and performed by qualified personnel where required.</p>
 
-    <h2 class="section">9. Residential-specific California home improvement terms</h2>
+    <h2 class="section">11. Residential-specific California home improvement terms</h2>
     <p class="note">Residential work generally requires strict Business and Professions Code §7159 form and notice requirements. Before presenting this agreement to a homeowner, add the current prescribed full Mechanics Lien Warning, Checklist for Homeowners, CSLB contact information, insurance notices, start/completion disclosures, payment schedule disclosures and applicable statutory cancellation notice with detachable cancellation forms. Do not treat this reminder as a substitute for those notices.</p>
     <div class="field">
       <label for="res_down_payment">Down payment ($):</label>
@@ -608,11 +627,11 @@
       </div>
     </div>
 
-    <h2 class="section">10. Addendum: Lumber clause and job prep checklist</h2>
-    <p class="note no-print"><a class="dl-link" href="Lumber-Clause-and-Job-Prep-Checklist.pdf" download>Download Lumber Clause &amp; Job Prep Checklist (PDF)</a></p>
+    <h2 class="section">12. Addendum: Lumber clause and job prep checklist</h2>
+    <p class="note no-print"><a class="dl-link" href="Lumber-Clause-and-Job-Prep-Checklist.pdf" download>Download Lumber Clause & Job Prep Checklist (PDF)</a></p>
     <h3 class="subsection">Damaged Lumber Replacement Clause</h3>
     <ul class="terms plain">
-      <li>Inspection of deteriorated lumber is a courtesy service that NE CITY ROOFING provides.</li>
+      <li>Inspection of deteriorated lumber is a courtesy service that ELI BARAJAS ROOFING provides.</li>
       <li>It must be understood that we will not be held liable for any missed or unchanged lumber.</li>
       <li>We are not liable for termite-infested lumber.</li>
       <li>Condition of existing lumber can only be adequately assessed after the entire roof is removed. If the roof is not completely removed, then an assessment of the visibly exposed lumber would be done.</li>
@@ -644,7 +663,7 @@
     </table>
     <p class="note center"><strong>-ACCEPTANCE-</strong><br>By initialing this, I have read, understand, and accept the above information.</p>
     <div class="field">
-      <label for="lumber_initials">INITIAL &amp; RETURN:</label>
+      <label for="lumber_initials">INITIAL & RETURN:</label>
       <input id="lumber_initials" name="lumber_initials" type="text" maxlength="12">
     </div>
 
@@ -733,7 +752,7 @@
     <p class="note">Official guidance: <a href="https://www.cslb.ca.gov/consumers/hire_a_contractor/contracts_and_binding_agreements.aspx">https://www.cslb.ca.gov/consumers/hire_a_contractor/contracts_and_binding_agreements.aspx</a></p>
     <p class="note">CSLB sample: <a href="https://www.cslb.ca.gov/Resources/GuidesAndPublications/2025/SAMPLE%20HOME%20IMPROVEMENT%20CONTRACT.pdf">https://www.cslb.ca.gov/Resources/GuidesAndPublications/2025/SAMPLE%20HOME%20IMPROVEMENT%20CONTRACT.pdf</a></p>
 
-    <p class="footer">NE City Roofing&nbsp;&nbsp;•&nbsp;&nbsp;Contract template — legal review required</p>
+    <p class="footer">Eli Barajas Roofing&nbsp;&nbsp;•&nbsp;&nbsp;Contract template — legal review required</p>
     <p class="doc-id-line" id="docIdLine"></p>
   </form>
 
@@ -1058,6 +1077,7 @@
     });
     Object.keys(data.signedAt || {}).forEach(function (id) { var c = $(id); if (c && allowed(id)) c._signedAt = data.signedAt[id]; });
     syncDownPayment();
+    setTimeout(growScope, 0);
     showSaved();
   }
 
@@ -1067,7 +1087,7 @@
     clearTimeout(draftIdTimer);
     draftIdTimer = setTimeout(function () {
       sha256Hex(JSON.stringify(lockPayload())).then(function (h) {
-        docIdLine.textContent = "Document ID: " + shortId(h) + "  •  NE City Roofing";
+        docIdLine.textContent = "Document ID: " + shortId(h) + "  •  Eli Barajas Roofing";
         docIdLine.dataset.docid = shortId(h);
       });
     }, 150);
@@ -1128,14 +1148,14 @@
     CUSTOMER_SIGS.forEach(function (id) { if ($(id)) $(id).closest(".pad-wrap").classList.add("customer-editable"); });
     setTimeout(autosizeTextareas, 0);
     bannerEl.className = "lock-banner no-print";
-    bannerEl.innerHTML = "<strong>Prepared and locked by NE City Roofing. Only your name, initials, signatures and dates can be filled in.</strong>" +
-      "Document ID: <span class=\"docid\" id=\"bannerDocId\"></span> &nbsp;—&nbsp; NE City Roofing can confirm this ID matches the agreement they sent you. " +
-      "When you finish, tap <b>Download signed PDF</b> and send the file to NE City Roofing.";
+    bannerEl.innerHTML = "<strong>Prepared and locked by Eli Barajas Roofing. Only your name, initials, signatures and dates can be filled in.</strong>" +
+      "Document ID: <span class=\"docid\" id=\"bannerDocId\"></span> &nbsp;—&nbsp; Eli Barajas Roofing can confirm this ID matches the agreement they sent you. " +
+      "When you finish, tap <b>Download signed PDF</b> and send the file to Eli Barajas Roofing.";
     $("bannerDocId").textContent = lockedDoc.docId;
     bannerEl.hidden = false;
-    docIdLine.textContent = "Document ID: " + lockedDoc.docId + "  •  Prepared and locked by NE City Roofing";
+    docIdLine.textContent = "Document ID: " + lockedDoc.docId + "  •  Prepared and locked by Eli Barajas Roofing";
     docIdLine.dataset.docid = lockedDoc.docId;
-    document.title = "Sign: NE City Roofing agreement (" + lockedDoc.docId + ")";
+    document.title = "Sign: Eli Barajas Roofing agreement (" + lockedDoc.docId + ")";
     restore();
   }
   function showLinkError(msg) {
@@ -1145,7 +1165,7 @@
     document.querySelectorAll("canvas.sig-pad").forEach(function (c) { c.dataset.locked = "1"; });
     document.querySelectorAll(".toolbar button, .bottom-actions button").forEach(function (b) { b.disabled = true; });
     bannerEl.className = "lock-banner error no-print";
-    bannerEl.innerHTML = "<strong>This agreement link is damaged or incomplete.</strong>Please ask NE City Roofing (323-696-5640) to send the link again. Do not sign this copy.";
+    bannerEl.innerHTML = "<strong>This agreement link is damaged or incomplete.</strong>Please ask Eli Barajas Roofing (323-696-5640) to send the link again. Do not sign this copy.";
     bannerEl.hidden = false;
   }
 
@@ -1249,7 +1269,7 @@
           if (y1 > y0) ctx.drawImage(big, 0, y0, big.width, y1 - y0, ML, MT, big.width, y1 - y0);
           ctx.fillStyle = "#222"; ctx.textAlign = "center";
           ctx.font = "italic 22px Arial, Helvetica, sans-serif";
-          var line1 = "NE City Roofing agreement  •  Document ID: " + docId + "  •  Page " + (p + 1) + " of " + pages;
+          var line1 = "Eli Barajas Roofing agreement  •  Document ID: " + docId + "  •  Page " + (p + 1) + " of " + pages;
           var line2 = (signedAt ? "Customer signed: " + fmtStamp(signedAt) + "  •  " : (mode === "customer" ? "Not yet signed  •  " : "")) + "PDF created: " + fmtStamp(now);
           ctx.fillText(line1, PAGE_W / 2, PAGE_H - MB + 62);
           ctx.fillText(line2, PAGE_W / 2, PAGE_H - MB + 92);
@@ -1257,8 +1277,8 @@
           if (p > 0) pdf.addPage("letter", "portrait");
           pdf.addImage(pc.toDataURL("image/jpeg", 0.88), "JPEG", 0, 0, 8.5, 11, undefined, "FAST");
         }
-        pdf.setProperties({ title: "NE City Roofing agreement " + docId, subject: "Document ID " + docId, creator: "NE City Roofing" });
-        pdf.save("NE-City-Roofing-Agreement-" + docId + (mode === "customer" ? "-signed" : "") + ".pdf");
+        pdf.setProperties({ title: "Eli Barajas Roofing agreement " + docId, subject: "Document ID " + docId, creator: "Eli Barajas Roofing" });
+        pdf.save("Eli-Barajas-Roofing-Agreement-" + docId + (mode === "customer" ? "-signed" : "") + ".pdf");
       });
     }).catch(function (e) {
       window.alert("Sorry, the PDF could not be made (" + (e && e.message ? e.message : e) + "). Use Save as PDF / Print instead.");
@@ -1279,6 +1299,8 @@
   });
   window.addEventListener("resize", function () { document.querySelectorAll("canvas.sig-pad").forEach(padSize); });
   form.addEventListener("input", function (e) { if (e.target && (e.target.id === "down_payment" || e.target.id === "res_down_payment")) syncDownPayment(e.target); });
+  function growScope() { var t = $("scope_of_work"); if (!t || t.disabled) return; t.style.height = "auto"; t.style.height = Math.max(230, t.scrollHeight + 2) + "px"; }
+  form.addEventListener("input", function (e) { if (e.target && e.target.id === "scope_of_work") growScope(); });
   form.addEventListener("input", scheduleSave);
   form.addEventListener("change", scheduleSave);
   ["btnPrint", "btnPrintBottom"].forEach(function (id) { $(id).addEventListener("click", doPrint); });
